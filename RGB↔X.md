@@ -14,6 +14,8 @@ Zheng Zeng, Valentin Deschaintre, Iliyan Georgiev, Yannick Hold-Geoffroy, Yiwei 
 
 # 动机
 
-X：诸如漫反射反照率、镜面粗糙度和金属度，以及各种空间变化的照明表示之类的**信息缓冲区（information buffers）** 称为 **固有通道（intrinsic channels）**
+X：诸如漫反射反照率、镜面粗糙度和金属度，以及各种空间变化的照明表示之类的 **信息缓冲区（information buffers）** 称为 **固有通道（intrinsic channels）**
 
-RGB→X问题：
+RGB→X问题：估计以上那些通道的问题
+
+X→RGB问题：根据给定描述合成图像的问题
