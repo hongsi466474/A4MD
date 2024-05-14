@@ -2,7 +2,7 @@ https://arxiv.org/abs/2405.00666
 
 https://doi.org/10.1145/3641519.3657445
 
-![Overview of Model](https://github.com/hongsi466474/A4MD/blob/00ade5338e6523328b495c44ff9dc7938202150d/%E5%9B%BE%E7%89%87/IMG_0278.jpeg?raw=true)
+![Overview of Model](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0278.jpeg?raw=true)
 
 # RGB↔X: Image decomposition and synthesis using material- and lighting-aware diffusion models
 
@@ -40,7 +40,7 @@ Zheng Zeng, Valentin Deschaintre, Iliyan Georgiev, Yannick Hold-Geoffroy, Yiwei 
 
 提出一个基于扩散的统一架构，它可以实现逼真的图像分析（描述几何、材料和照明信息的内在通道估计）和合成（给定内在通道的逼真渲染），并在逼真的室内场景图像领域进行了演示，如图。
 
-![图一](https://github.com/hongsi466474/A4MD/blob/9ab89c100a13dded01a4a64fa40a8ed2dad0b2ce/%E5%9B%BE%E7%89%87/IMG_0277.jpeg?raw=true)
+![图一](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0277.jpeg?raw=true)
 
 > 我们的工作是实现图像分解和合成统一框架的第一步。
 > 
@@ -64,10 +64,10 @@ Zheng Zeng, Valentin Deschaintre, Iliyan Georgiev, Yannick Hold-Geoffroy, Yiwei 
 
 ### 数据集
 
-![表一](https://github.com/hongsi466474/A4MD/blob/fe55561be1708b6fb49ab7ad51b54c63697024c8/%E5%9B%BE%E7%89%87/IMG_0279.jpeg?raw=true)
+![表一](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0279.jpeg?raw=true)
 ## 模型
 
-![图二](https://github.com/hongsi466474/A4MD/blob/00ade5338e6523328b495c44ff9dc7938202150d/%E5%9B%BE%E7%89%87/IMG_0278.jpeg?raw=true)
+![图二](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0278.jpeg?raw=true)
 
 ### RGB→X 模型
 
@@ -82,7 +82,7 @@ Zheng Zeng, Valentin Deschaintre, Iliyan Georgiev, Yannick Hold-Geoffroy, Yiwei 
 	- 避免处理多个输出通道
 		- 事实证明，这让训练更具挑战性
 
-![](https://github.com/hongsi466474/A4MD/blob/f658b88628be29db7ef48e73c7e7e9ec8302cd5c/%E5%9B%BE%E7%89%87/RGB%E2%80%94%3EX.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/X-%3ERGB.jpeg?raw=true)
 
 ### X→RGB 模型
 
@@ -96,16 +96,16 @@ Zheng Zeng, Valentin Deschaintre, Iliyan Georgiev, Yannick Hold-Geoffroy, Yiwei 
 	- 让图像生成胜任任何条件的子集
 		- 例如，不提供反照率或照明将导致模型产生似是而非的图像，使用其之前来补偿缺失的信息
  
-![](https://github.com/hongsi466474/A4MD/blob/413dc238e71d577408d001623b5ed2a3969ef24c/%E5%9B%BE%E7%89%87/X-%3ERGB.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/X-%3ERGB.jpeg?raw=true)
 
 # 结果
 
 ## RGB→X
 
-![](https://github.com/hongsi466474/A4MD/blob/5b510fec9f890ac0e4be39f4f8c49ac2781b15fe/%E5%9B%BE%E7%89%87/IMG_0085.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0085.jpeg?raw=true)
 
-![](https://github.com/hongsi466474/A4MD/blob/5b510fec9f890ac0e4be39f4f8c49ac2781b15fe/%E5%9B%BE%E7%89%87/IMG_0282.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0282.jpeg?raw=true)
 
 ## X→RGB
 
-![](https://github.com/hongsi466474/A4MD/blob/5b510fec9f890ac0e4be39f4f8c49ac2781b15fe/%E5%9B%BE%E7%89%87/IMG_0283.jpeg?raw=ture)
+![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0283.jpeg?raw=ture)
