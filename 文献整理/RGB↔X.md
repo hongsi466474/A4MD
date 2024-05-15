@@ -12,6 +12,8 @@ Zheng Zeng, Valentin Deschaintre, Iliyan Georgiev, Yannick Hold-Geoffroy, Yiwei 
 
 **SIGGRAPH** Conference Papers ’24, July 27-August 1, 2024, Denver, CO, USA
 
+CCS Concepts：计算方法 $\to$ 渲染
+
 关键词：扩散模型 本征分解 逼真渲染
 
 # 动机
