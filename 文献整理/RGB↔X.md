@@ -18,7 +18,7 @@ CCS Concepts：计算方法 $\to$ 渲染
 
 # 动机
 
-- 传统渲染：精准但需要完成的场景描述
+- 传统渲染：精准但需要完整的场景描述
 - 扩散模型：易用、真实但难精确控制
 
 <!--- 探索 *扩散模型* 、 *渲染* 和 *固有通道估计* 之间的联系，重点关注材质/光线估计和以材质/光线为条件的图像合成，所有这些都在同一个扩散框架中进行。 --->
@@ -67,6 +67,7 @@ CCS Concepts：计算方法 $\to$ 渲染
 ### 数据集
 
 ![表一](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0279.jpeg?raw=true)
+
 ## 模型
 
 ![图二](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0278.jpeg?raw=true)
@@ -84,7 +85,23 @@ CCS Concepts：计算方法 $\to$ 渲染
 	- 避免处理多个输出通道
 		- 事实证明，这让训练更具挑战性
 
-![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/X-%3ERGB.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/15dd5360cadbc8cbe47a4db2b963235cab57ad4b/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/RGB%E2%80%94%3EX.jpeg?raw=true)
+
+#### 损失函数：
+```math
+\begin{gather}
+\mathbf{v}^{RGB\to X}_{t}=\sqrt{ \bar{\alpha}_{t} }\epsilon-\sqrt{ 1-\bar{\alpha}_{t} }\mathbf{z}^X_{0}  \tag{1} \\
+L_{\theta}=\Vert\mathbf{v}^{RGB\to X}_{t}-\hat{\mathbf{v}}^{RGB\to X}_{\theta}(t,\mathbf{z}^X_{t},\mathcal{E}(\mathbf{I}),\tau(\mathbf{p}^X))\Vert^2_{2}. \tag{2}
+\end{gather}$$
+```
+
+- $t$ 为时间步（在训练过程中均匀提取的噪声量）
+- $\epsilon\in\mathcal{N}(0,1)$ ，$\bar{\alpha}_t$ 是 $t$ 的标量函数
+- $\hat{\mathbf{v}}^{RGB\to X}_{\theta}$ 是带参数 $\theta$ 的RGB→X扩散模型
+- $\mathbf{z}^X_0$ 为目标 latent ，$\mathbf{z}^X_t$ 为在第 $t$ 步对 $\mathbf{z}^X_0$ 噪声 $\epsilon$ 的噪声 latent
+- $\mathcal{E}$ 为原始 stable diffusion 模型的编码器
+- $\mathbf{p}^X$ 是为 $\mathbf{I}$ 计算的文本提示（prompt）
+- $\tau$ 为 CLIP 文本编码器：将prompt编码为文本嵌入向量（textembedding vector）
 
 ### X→RGB 模型
 
@@ -99,6 +116,19 @@ CCS Concepts：计算方法 $\to$ 渲染
 		- 例如，不提供反照率或照明将导致模型产生似是而非的图像，使用其之前来补偿缺失的信息
  
 ![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/X-%3ERGB.jpeg?raw=true)
+
+#### 损失函数：
+```math
+\begin{gather}
+\mathbf{v}^{X\to RGB}_{t}=\sqrt{ \bar{\alpha}_{t} }\epsilon-\sqrt{ 1-\bar{\alpha}_{t} }\mathbf{z}^{RGB}_{0}  \tag{4} \\
+L'_{\theta}=\Big\Vert\mathbf{v}^{X\to RGB}_{t}-\hat{\mathbf{v}}^{X\to RGB}_{\theta}\Big(t,\mathbf{z}^{RGB}_{t},\mathbf{z}^X_{t},\tau(\mathbf{p})\Big)\Big\Vert^2_{2}. \tag{5}
+\end{gather}
+```
+
+- $\hat{\mathbf{v}}^{X\to RGB}_{\theta}$ 是带参数 $\theta$ 的X→RGB扩散模型
+- $\mathbf{z}^{RGB}_0=\mathcal{E}(\mathbf{I})$ 为目标 latent，
+- $\mathbf{z}^X_t=(\mathcal{P}(\mathbf{n}),\mathcal{P}(\mathbf{a}),\mathcal{P}(\mathbf{r}),\mathcal{P}(\mathbf{m}),\mathcal{P}(\mathbf{E}))，其中\mathcal{P}(x)\in\{\mathcal{E}(x),0\}$ 【通道drop-out】
+- CLIP 文本嵌入 $\tau(\mathbf{p})$ 用作模型交叉注意力层的上下文
 
 # 结果
 
