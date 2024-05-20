@@ -33,14 +33,10 @@ https://arxiv.org/abs/2404.09412
 ## GS 和纹理定义
 
 - 基于点的 $\alpha$ -混合渲染公式： ^b45b75
-
-```math
-   C _{*}=\sum^N _{i=1}* _{i}\alpha _{i}T _{i} \tag{1}
-```
-
->- $`N`$ 为一条光线上采样点的数量
->- $`T _i=\prod^{i-1} _{j=1}(1-\alpha _{j})`$ 为累计透射率
->- $`*`$ 可为要混合的采样点的任何属性（eg. 深度、颜色和法向）
+	- $$C _{\*}=\sum^N _{i=1} \* _{i}\alpha _{i}T _{i} \tag{1}$$
+ 		- $`N`$ 为一条光线上采样点的数量
+   		- $`T _i=\prod\limits _{j=1}^{i-1}(1-\alpha _{j})`$ 为累计透射率
+     		- $`*`$ 可为要混合的采样点的任何属性（eg. 深度、颜色和法向）
 
 - 将 $`SH`$ 替换为可优化的纹理参数（漫反射反照率 $`k _d`$ ，粗糙度 $`r`$ ，镜面反照率 $`k _s`$ ），从而解耦纹理和光照
 
@@ -53,12 +49,9 @@ https://arxiv.org/abs/2404.09412
 
 - 用 SDF 作几何表示，记为 $`f _s(x)`$ ，$`x`$ 为3D空间的采样点
 - 将 SDF值转换为体密度：
-```math
-\sigma(t)=\max\Big(-\frac{\frac{\mathrm{d}\Phi _{s}}{\mathrm{d}t}(f(x(t)))}{\Phi _{s}(f(x(t)))},0\Big)
-```
-
->- $`\Phi_s(x)=(1+e^{-sx})^{-1}`$ 
->- $`s`$ 为可训练的偏差参数
+	- $$\sigma(t)=\max\Big(-\frac{\frac{\mathrm{d}\Phi _{s}}{\mathrm{d}t}(f(x(t)))}{\Phi _{s}(f(x(t)))},0\Big)$$
+		- $`\Phi_s(x)=(1+e^{-sx})^{-1}`$ 
+		- $`s`$ 为可训练的偏差参数
 
 -  颜色：将外观分为两个分支以避免几何伪影（eg. 反光场景上的凹面）
 	- 视角独立分支：预测采样点 $`x`$ 处的视角独立（漫反射）颜色 $`c_d`$ 及镜面色调 $`p`$ 
@@ -69,72 +62,48 @@ https://arxiv.org/abs/2404.09412
 
 - 用公式 [[DeferredGS#^b45b75|(1)]] 对光线 $`v`$ 上的采样点的颜色作积分以渲染像素 $`C' _c(v)`$ 
 - 点 $`x _i`$ 的不透明度 $`\alpha _i=1-\exp\big(-\int^{t _{i+1}} _{t _{i}}\sigma(t)\mathrm{d}t\big)`$ 
-
 - 损失函数：
-
-```math
-  L_{nerf}=\sum_{c\in V}\big\Vert C'_{c}(v)-C^t(v)\big\Vert+\lambda\sum_{v\in V}\sum^M_{i=1}\big\Vert\Vert\nabla_{x_{v,i}}\Vert-1\big\Vert^2_{2} \tag{2}
-```
-
->- $`V`$ 为一个batch的光线数，$`M`$ 为一条光线上的采样点数，$`C^t(v)`$ 为对应的GT颜色
->- 第二项为 Eikonal 损失，$`\Vert\nabla _{x _{v,i}}\Vert`$ 为光线 $v$ 在第 $i$ 个采样点 $`x _{v,i}`$ 处的SDF网络 $`f _s(x)`$ 梯度的 spatial norm
->- 本文取 $`\lambda=0.1`$ 
+	- $$L _{nerf}=\sum _{c\in V}\big\Vert C' _{c}(v)-C^t(v)\big\Vert+\lambda\sum _{v\in V}\sum^M _{i=1}\big\Vert\Vert\nabla _{x _{v,i}}\Vert-1\big\Vert^2 _{2} \tag{2}$$
+ 		- $`V`$ 为一个batch的光线数，$`M`$ 为一条光线上的采样点数，$`C^t(v)`$ 为对应的GT颜色
+		- 第二项为 Eikonal 损失，$`\Vert\nabla _{x _{v,i}}\Vert`$ 为光线 $v$ 在第 $i$ 个采样点 $`x _{v,i}`$ 处的SDF网络 $`f _s(x)`$ 梯度的 spatial norm
+		- 本文取 $`\lambda=0.1`$ 
 
 ### 从 Instant-RefNeuS 蒸馏法向信息到GS
 
 - 对每个高斯定义一个额外的法向 $`n`$ ，并用公式 [[DeferredGS#^b45b75|(1)]] 求像素 $`C _n`$ 的 GS 法向
 - 通过最小化 $`C _n`$ 与 Instant-RefNeuS 中相应渲染的法线之间的差值来蒸馏 GS 的法向场：
-
-```math
-L_{nd}=\sum_{v\in V}\Vert 1-C_{n(v)}\cdot C'_{n}(v)\Vert=\sum_{v\in V}\big\Vert 1-C_{n}(v)\cdot C_{\nabla_{x_{v,i}}}\big\Vert \tag{3}
-```
+	- $$L _{nd}=\sum _{v\in V}\Vert 1-C _{n(v)}\cdot C' _{n}(v)\Vert=\sum _{v\in V}\big\Vert 1-C _{n}(v)\cdot C _{\nabla _{x _{v,i}}}\big\Vert \tag{3}$$
 
 ## GS 中的延迟着色
 
 ### 着色计算
 
 - 渲染公式：
-```math
-L(\omega_{o})=\int_{\Omega}L_{i}(\omega_{i})f(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{4}
-```
-
->- $`L(\omega _o)`$ 与 $`L(\omega _i)`$ 分别表示 $`\omega _o`$ 方向的出射光线和 $`\omega _i`$ 方向的入射光线
->- $`f(\omega _{i},\omega _{o})`$ 是点的 BRDF 特性，可用迪斯尼着色模型确定：
-
->```math
->f(\omega_i),\omega_o)=\frac{k_{d}}{\pi}+\frac{DFG}{4(\omega_{i}\cdot n)(\omega_{o}\cdot n)} \tag{5}
->```
-
->	- $D$ ：正态分布函数
->	- $F$ ：菲涅尔项
->	- $G$ ：几何项
->	- 这三项的计算详见 [5.1](https://zhuanlan.zhihu.com/p/443873239)
-
+  - $$L(\omega_{o})=\int_{\Omega}L_{i}(\omega_{i})f(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{4}$$
+    - $`L(\omega _o)`$ 与 $`L(\omega _i)`$ 分别表示 $`\omega _o`$ 方向的出射光线和 $`\omega _i`$ 方向的入射光线
+    - $`f(\omega _{i},\omega _{o})`$ 是点的 BRDF 特性，可用迪斯尼着色模型确定：
+      - $$f(\omega_i),\omega_o)=\frac{k_{d}}{\pi}+\frac{DFG}{4(\omega_{i}\cdot n)(\omega_{o}\cdot n)} \tag{5}$$
+        - $D$ ：正态分布函数
+        - $F$ ：菲涅尔项
+        - $G$ ：几何项
+        - 这三项的计算详见 [5.1](https://zhuanlan.zhihu.com/p/443873239)
 - 用 $`6\times512\times512`$ High Dynamic Range (HDR) cube map 模拟场景的环境光照
 - 用 SplitSum ([2.2.4.1](https://zhuanlan.zhihu.com/p/121719442)) 近似法分离光照和 BRDF 积分，以实现高效阴影计算
-- 最终着色：$`c _g=c _{dif}+c _{spec}`$ 
-	- 漫反射颜色 ：
+- 最终着色：$`c _g=c _{dif}+c _{spec}`$
+  - 漫反射颜色 ：
+    - $$c_{dif}=\frac{k _{d}}{\pi}\int _{\Omega}L _{i}(\omega _{i})(\omega _{i}\cdot n)\mathrm{d}\omega _{i} \tag{6}$$
+      - $`L _{i}(\omega _{i})(\omega _{i}\cdot n)`$ 只依赖于法向 $`n`$ ，并且可以被预计算并存储在 2D 纹理
+  - 镜面反射颜色：
 
-```math
-c_{dif}=\frac{k _{d}}{\pi}\int _{\Omega}L _{i}(\omega _{i})(\omega _{i}\cdot n)\mathrm{d}\omega _{i} \tag{6}
-```
+$$\begin{align}  c _{spec}  \approx  {}& Int _{light}\cdot Int _{BRDF} \\  
+= {}& \int _{\Omega} L _{i}(\omega _{i})D(\omega _{i},\omega _{o})(\omega _{i}\cdot n)\mathrm{d}\omega _{i}\cdot \int _{\Omega}f(\omega _{i},\omega _{o})(\omega _{i}\cdot n)\mathrm{d}\omega _{i} \tag{7}\end{align}$$
 
->- $`L _{i}(\omega _{i})(\omega _{i}\cdot n)`$ 只依赖于法向 $`n`$ ，并且可以被预计算并存储在 2D 纹理
-- - 镜面反射颜色：
-
-```math
-\begin{align}
-c_{spec} & \approx Int_{light}\cdot Int_{BRDF} \\
-& =\int_{\Omega}L_{i}(\omega_{i})D(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i}\cdot \int_{\Omega}f(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{7}
-\end{align}
-```
-
->- $`Int _{light}`$ 表示入射光与正态分布函数 $D$ 的积分
->- - 对于给定的环境贴图， $`Int _{light}`$ 只与粗糙值 $`r`$ 有关
->- - 故可以预计算并存在 mipmap 中（每一个 mip level 对应一个固定的粗糙值）
->- $`Int _{BRDF}`$ 是均匀白色环境光照下镜面 BRDF 的积分
->- - 由 BRDF 中的粗糙值和入射光方向与法向之间的点积 $`\omega _i\cdot n`$ 决定
->- - 也可预计算并存在 2D 纹理中，在渲染时进行有效查询
+- - - $`Int _{light}`$ 表示入射光与正态分布函数 $D$ 的积分
+    - 对于给定的环境贴图， $`Int _{light}`$ 只与粗糙值 $`r`$ 有关
+    - 故可以预计算并存在 mipmap 中（每一个 mip level 对应一个固定的粗糙值）
+    - $`Int _{BRDF}`$ 是均匀白色环境光照下镜面 BRDF 的积分
+    - 由 BRDF 中的粗糙值和入射光方向与法向之间的点积 $`\omega _i\cdot n`$ 决定
+    - 也可预计算并存在 2D 纹理中，在渲染时进行有效查询
 
 ### 获得解耦的 GS 表示
 
