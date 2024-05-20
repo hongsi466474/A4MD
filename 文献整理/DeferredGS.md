@@ -59,7 +59,7 @@ https://arxiv.org/abs/2404.09412
 
 > 带 $`'`$ 的项指NeRF网络，不带的指GS表示
 
-- 用公式 [[DeferredGS#^b45b75|(1)]] 对光线 $`v`$ 上的采样点的颜色作积分以渲染像素 $`C' _c(v)`$ 
+- 用公式 (1) 对光线 $`v`$ 上的采样点的颜色作积分以渲染像素 $`C' _c(v)`$ 
 - 点 $`x _i`$ 的不透明度 $`\alpha _i=1-\exp\big(-\int^{t _{i+1}} _{t _{i}}\sigma(t)\mathrm{d}t\big)`$ 
 - 损失函数：
 	- $$L _{nerf}=\sum _{c\in V}\big\Vert C' _{c}(v)-C^t(v)\big\Vert+\lambda\sum _{v\in V}\sum^M _{i=1}\big\Vert\Vert\nabla _{x _{v,i}}\Vert-1\big\Vert^2 _{2} \tag{2}$$
@@ -69,7 +69,7 @@ https://arxiv.org/abs/2404.09412
 
 ### 从 Instant-RefNeuS 蒸馏法向信息到GS
 
-- 对每个高斯定义一个额外的法向 $`n`$ ，并用公式 [[DeferredGS#^b45b75|(1)]] 求像素 $`C _n`$ 的 GS 法向
+- 对每个高斯定义一个额外的法向 $`n`$ ，并用公式 (1) 求像素 $`C _n`$ 的 GS 法向
 - 通过最小化 $`C _n`$ 与 Instant-RefNeuS 中相应渲染的法线之间的差值来蒸馏 GS 的法向场：
 	- $$L _{nd}=\sum _{v\in V}\Vert 1-C _{n(v)}\cdot C' _{n}(v)\Vert=\sum _{v\in V}\big\Vert 1-C _{n}(v)\cdot C _{\nabla _{x _{v,i}}}\big\Vert \tag{3}$$
 
@@ -106,9 +106,9 @@ https://arxiv.org/abs/2404.09412
 - × 直截了当的方法：前向着色
 	- 在新光照条件下渲染会产生显著的伪影
 - √ 延迟渲染
-	- 首先用公式 [[DeferredGS#^b45b75|(1)]] 将位置 $`P`$ 、法向 $`n`$ 、漫反射反照率 $`k _d`$ 、粗糙度 $`r`$ 镜面反照率 $`k _s`$ 和不透明度 $`\alpha`$ 等要素光栅化为二维像素 $`C _P,C _n,C _{k _d},C _r,C _{k _s},C _{\alpha}`$ 
+	- 首先用公式 (1) 将位置 $`P`$ 、法向 $`n`$ 、漫反射反照率 $`k _d`$ 、粗糙度 $`r`$ 镜面反照率 $`k _s`$ 和不透明度 $`\alpha`$ 等要素光栅化为二维像素 $`C _P,C _n,C _{k _d},C _r,C _{k _s},C _{\alpha}`$ 
 	- 汇总所有像素，得到相应的 2D 贴图 $`I _P,I _n,I _{k _d},I _r,I _{k _s},I _{\alpha}`$ 
-	- 用公式 [[DeferredGS#^7beb55|(4)]] 计算像素的阴影颜色 $C$ 
+	- 用公式 (4) 计算像素的阴影颜色 $C$ 
 		- 只对 $`C _\alpha>0.5`$ 的像素点计算着色
 	- 损失函数：
 		- $$L=L_{nerf}+\lambda_{nd}L_{nd}+\lambda_{L1}L_{L1}+\lambda_{ssim}L_{ssim}+\lambda_{mask}L_{mask}+\lambda_{TV}L_{TV} \tag{8}$$
@@ -140,7 +140,7 @@ https://arxiv.org/abs/2404.09412
 - 步骤：
   - 确定学要调整的高斯
     - 是否位于编辑 mask 中
-    - 高斯深度与用公式 [[DeferredGS#^b45b75|(1)]] 渲染的深度图中相应深度之间的差异
+    - 高斯深度与用公式 (1) 渲染的深度图中相应深度之间的差异
   - 优化高斯的纹理属性 $*$ ：
     - ×：只考虑输入编辑视点，从其他视角查看优化后的高斯时，可能产生混合伪影
       - $$\arg\min _{\*}\Vert I^i _{\*}-I^i _{e}\Vert,\*\in\{k _{d},r,k _{s}\} \tag{9}$$
