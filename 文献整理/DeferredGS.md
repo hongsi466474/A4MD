@@ -33,12 +33,17 @@ https://arxiv.org/abs/2404.09412
 ## GS 和纹理定义
 
 - 基于点的 $\alpha$ -混合渲染公式： ^b45b75
-	- $$C_{*}=\sum^N_{i=1}*_{i}\alpha_{i}T_{i} \tag{1}$$ 
-	- $N$ 为一条光线上采样点的数量
-	- $T_i=\prod^{i-1}_{j=1}(1-\alpha_{j})$ 为累计透射率
-	- $*$ 可为要混合的采样点的任何属性（eg. 深度、颜色和法向）
+- $$C _{*}=\sum^N _{i=1}* _{i}\alpha _{i}T _{i} \tag{1}$$
 
-- 将 $SH$ 替换为可优化的纹理参数（漫反射反照率 $k_d$ ，粗糙度 $r$ ，镜面反照率 $k_s$ ），从而解耦纹理和光照
+```math
+   C _{*}=\sum^N _{i=1}* _{i}\alpha _{i}T _{i} \tag{1}
+```
+
+>- $`N`$ 为一条光线上采样点的数量
+>- $`T _i=\prod^{i-1} _{j=1}(1-\alpha _{j})`$ 为累计透射率
+>- $`*`$ 可为要混合的采样点的任何属性（eg. 深度、颜色和法向）
+
+- 将 $`SH`$ 替换为可优化的纹理参数（漫反射反照率 $`k _d`$ ，粗糙度 $`r`$ ，镜面反照率 $`k_s`$ ），从而解耦纹理和光照
 
 ## 法向场蒸馏模型
 
@@ -47,74 +52,106 @@ https://arxiv.org/abs/2404.09412
 
 ### Instant-RefNeus
 
-- 用 SDF 作几何表示，记为 $f_s(x)$ ，$x$ 为3D空间的采样点
-- 将 SDF值转换为体密度：$\sigma(t)=\max\Big(-\frac{\frac{\mathrm{d}\Phi_{s}}{\mathrm{d}t}(f(x(t)))}{\Phi_{s}(f(x(t)))},0\Big)$
-	- $\Phi_s(x)=(1+e^{-sx})^{-1}$ 
-	- $s$ 为可训练的偏差参数
+- 用 SDF 作几何表示，记为 $`f _s(x)`$ ，$`x`$ 为3D空间的采样点
+- 将 SDF值转换为体密度：
+```math
+\sigma(t)=\max\Big(-\frac{\frac{\mathrm{d}\Phi _{s}}{\mathrm{d}t}(f(x(t)))}{\Phi _{s}(f(x(t)))},0\Big)
+```
+
+>- $`\Phi_s(x)=(1+e^{-sx})^{-1}`$ 
+>- $`s`$ 为可训练的偏差参数
 
 -  颜色：将外观分为两个分支以避免几何伪影（eg. 反光场景上的凹面）
-	- 视角独立分支：预测采样点 $x$ 处的视角独立（漫反射）颜色 $c_d$ 及镜面色调 $p$ 
-	- 视角相关分支：以视角方向为输入，输出镜面反射光照 $c_l$ 
-	- 最终颜色为 $c'=c_d+pc_l$ 
+	- 视角独立分支：预测采样点 $`x`$ 处的视角独立（漫反射）颜色 $`c_d`$ 及镜面色调 $`p`$ 
+	- 视角相关分支：以视角方向为输入，输出镜面反射光照 $`c_l`$ 
+	- 最终颜色为 $`c'=c _d+pc _l`$ 
 
-> 带 $'$ 的项指NeRF网络，不带的指GS表示
+> 带 $`'`$ 的项指NeRF网络，不带的指GS表示
 
-- 用公式 [[DeferredGS#^b45b75|(1)]] 对光线 $v$ 上的采样点的颜色作积分以渲染像素 $C'_c(v)$ 
-- 点 $x_i$ 的不透明度 $\alpha_i=1-\exp\big(-\int^{t_{i+1}}_{t_{i}}\sigma(t)\mathrm{d}t\big)$ 
+- 用公式 [[DeferredGS#^b45b75|(1)]] 对光线 $`v`$ 上的采样点的颜色作积分以渲染像素 $`C' _c(v)`$ 
+- 点 $`x _i`$ 的不透明度 $`\alpha _i=1-\exp\big(-\int^{t _{i+1}} _{t _{i}}\sigma(t)\mathrm{d}t\big)`$ 
 
 - 损失函数：
-	- $$L_{nerf}=\sum_{c\in V}\big\Vert C'_{c}(v)-C^t(v)\big\Vert+\lambda\sum_{v\in V}\sum^M_{i=1}\big\Vert\Vert\nabla_{x_{v,i}}\Vert-1\big\Vert^2_{2} \tag{2}$$
-	- $V$ 为一个batch的光线数，$M$ 为一条光线上的采样点数，$C^t(v)$ 为对应的GT颜色
-	- 第二项为 Eikonal 损失，$\Vert\nabla_{x_{v,i}}\Vert$ 为光线 $v$ 在第 $i$ 个采样点 $x_{v,i}$ 处的SDF网络 $f_s(x)$ 梯度的 spatial norm
-	- 本文取 $\lambda=0.1$ 
+
+```math
+  L_{nerf}=\sum_{c\in V}\big\Vert C'_{c}(v)-C^t(v)\big\Vert+\lambda\sum_{v\in V}\sum^M_{i=1}\big\Vert\Vert\nabla_{x_{v,i}}\Vert-1\big\Vert^2_{2} \tag{2}
+```
+
+>- $`V`$ 为一个batch的光线数，$`M`$ 为一条光线上的采样点数，$`C^t(v)`$ 为对应的GT颜色
+>- 第二项为 Eikonal 损失，$`\Vert\nabla _{x _{v,i}}\Vert`$ 为光线 $v$ 在第 $i$ 个采样点 $`x _{v,i}`$ 处的SDF网络 $`f _s(x)`$ 梯度的 spatial norm
+>- 本文取 $`\lambda=0.1`$ 
 
 ### 从 Instant-RefNeuS 蒸馏法向信息到GS
 
-- 对每个高斯定义一个额外的法向 $n$ ，并用公式 [[DeferredGS#^b45b75|(1)]] 求像素 $C_n$ 的 GS 法向
-- 通过最小化 $C_n$ 与 Instant-RefNeuS 中相应渲染的法线之间的差值来蒸馏 GS 的法向场：$$L_{nd}=\sum_{v\in V}\Vert 1-C_{n(v)}\cdot C'_{n}(v)\Vert=\sum_{v\in V}\big\Vert 1-C_{n}(v)\cdot C_{\nabla_{x_{v,i}}}\big\Vert \tag{3}$$
+- 对每个高斯定义一个额外的法向 $`n`$ ，并用公式 [[DeferredGS#^b45b75|(1)]] 求像素 $`C _n`$ 的 GS 法向
+- 通过最小化 $`C _n`$ 与 Instant-RefNeuS 中相应渲染的法线之间的差值来蒸馏 GS 的法向场：
+
+```math
+L_{nd}=\sum_{v\in V}\Vert 1-C_{n(v)}\cdot C'_{n}(v)\Vert=\sum_{v\in V}\big\Vert 1-C_{n}(v)\cdot C_{\nabla_{x_{v,i}}}\big\Vert \tag{3}
+```
 
 ## GS 中的延迟着色
 
 ### 着色计算
 
-- 渲染公式：$$L(\omega_{o})=\int_{\Omega}L_{i}(\omega_{i})f(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{4}$$ ^7beb55
-	- $L(\omega_o)$ 与 $L(\omega_i)$ 分别表示 $\omega_o$ 方向的出射光线和 $\omega_i$ 方向的入射光线
-	- $f(\omega_{i},\omega_{o})$ 是点的 BRDF 特性，可用迪斯尼着色模型确定：$$f(\omega_i),\omega_o)=\frac{k_{d}}{\pi}+\frac{DFG}{4(\omega_{i}\cdot n)(\omega_{o}\cdot n)} \tag{5}$$
-		- $D$ ：正态分布函数
-		- $F$ ：菲涅尔项
-		- $G$ ：几何项
-		- 这三项的计算详见 [5.1](https://zhuanlan.zhihu.com/p/443873239)
-- 用 $6\times512\times512$ High Dynamic Range (HDR) cube map 模拟场景的环境光照
+- 渲染公式：
+```math
+L(\omega_{o})=\int_{\Omega}L_{i}(\omega_{i})f(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{4}
+```
+
+>- $`L(\omega _o)`$ 与 $`L(\omega _i)`$ 分别表示 $`\omega _o`$ 方向的出射光线和 $`\omega _i`$ 方向的入射光线
+>- $`f(\omega _{i},\omega _{o})`$ 是点的 BRDF 特性，可用迪斯尼着色模型确定：
+
+>```math
+>f(\omega_i),\omega_o)=\frac{k_{d}}{\pi}+\frac{DFG}{4(\omega_{i}\cdot n)(\omega_{o}\cdot n)} \tag{5}
+>```
+
+>	- $D$ ：正态分布函数
+>	- $F$ ：菲涅尔项
+>	- $G$ ：几何项
+>	- 这三项的计算详见 [5.1](https://zhuanlan.zhihu.com/p/443873239)
+
+- 用 $`6\times512\times512`$ High Dynamic Range (HDR) cube map 模拟场景的环境光照
 - 用 SplitSum ([2.2.4.1](https://zhuanlan.zhihu.com/p/121719442)) 近似法分离光照和 BRDF 积分，以实现高效阴影计算
-- 最终着色：$c_g=c_{dif}+c_{spec}$ 
-	- 漫反射颜色 ：$$c_{dif}=\frac{k_{d}}{\pi}\int_{\Omega}L_{i}(\omega_{i})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{6}$$
-		- $L_{i}(\omega_{i})(\omega_{i}\cdot n)$ 只依赖于法向 $n$ ，并且可以被预计算并存储在 2D 纹理
-	- 镜面反射颜色：$$\begin{align}
+- 最终着色：$`c _g=c _{dif}+c _{spec}`$ 
+	- 漫反射颜色 ：
+
+```math
+c_{dif}=\frac{k _{d}}{\pi}\int _{\Omega}L _{i}(\omega _{i})(\omega _{i}\cdot n)\mathrm{d}\omega _{i} \tag{6}
+```
+
+>- $`L _{i}(\omega _{i})(\omega _{i}\cdot n)`$ 只依赖于法向 $`n`$ ，并且可以被预计算并存储在 2D 纹理
+	- 镜面反射颜色：
+
+```math
+\begin{align}
 c_{spec} & \approx Int_{light}\cdot Int_{BRDF} \\
 & =\int_{\Omega}L_{i}(\omega_{i})D(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i}\cdot \int_{\Omega}f(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{7}
-\end{align}$$
-		- $Int_{light}$ 表示入射光与正态分布函数 $D$ 的积分
-			- 对于给定的环境贴图， $Int_{light}$ 只与粗糙值 $r$ 有关
-			- 故可以预计算并存在 mipmap 中（每一个 mip level 对应一个固定的粗糙值）
-		- $Int_{BRDF}$ 是均匀白色环境光照下镜面 BRDF 的积分
-			- 由 BRDF 中的粗糙值和入射光方向与法向之间的点积 $\omega_i\cdot n$ 决定
-			- 也可预计算并存在 2D 纹理中，在渲染时进行有效查询
+\end{align}
+```
+
+>- $`Int _{light}`$ 表示入射光与正态分布函数 $D$ 的积分
+>- - 对于给定的环境贴图， $`Int _{light}`$ 只与粗糙值 $`r`$ 有关
+>- - 故可以预计算并存在 mipmap 中（每一个 mip level 对应一个固定的粗糙值）
+>- $`Int _{BRDF}`$ 是均匀白色环境光照下镜面 BRDF 的积分
+>- - 由 BRDF 中的粗糙值和入射光方向与法向之间的点积 $`\omega _i\cdot n`$ 决定
+>- - 也可预计算并存在 2D 纹理中，在渲染时进行有效查询
 
 ### 获得解耦的 GS 表示
 
 - × 直截了当的方法：前向着色
 	- 在新光照条件下渲染会产生显著的伪影
 - √ 延迟渲染
-	- 首先用公式 [[DeferredGS#^b45b75|(1)]] 将位置 $P$ 、法向 $n$ 、漫反射反照率 $k_d$ 、粗糙度 $r$ 镜面反照率 $k_s$ 和不透明度 $\alpha$ 等要素光栅化为二维像素 $C_P,C_n,C_{k_d},C_r,C_{k_s},C_{\alpha}$ 
-	- 汇总所有像素，得到相应的 2D 贴图 $I_P,I_n,I_{k_d},I_r,I_{k_s},I_{\alpha}$ 
+	- 首先用公式 [[DeferredGS#^b45b75|(1)]] 将位置 $`P`$ 、法向 $`n`$ 、漫反射反照率 $`k _d`$ 、粗糙度 $`r`$ 镜面反照率 $`k _s`$ 和不透明度 $`\alpha`$ 等要素光栅化为二维像素 $`C _P,C _n,C _{k _d},C _r,C _{k _s},C _{\alpha}`$ 
+	- 汇总所有像素，得到相应的 2D 贴图 $`I _P,I _n,I _{k _d},I _r,I _{k _s},I _{\alpha}`$ 
 	- 用公式 [[DeferredGS#^7beb55|(4)]] 计算像素的阴影颜色 $C$ 
-		- 只对 $C_\alpha>0.5$ 的像素点计算着色
+		- 只对 $`C _\alpha>0.5`$ 的像素点计算着色
 	- 损失函数：
 		- $$L=L_{nerf}+\lambda_{nd}L_{nd}+\lambda_{L1}L_{L1}+\lambda_{ssim}L_{ssim}+\lambda_{mask}L_{mask}+\lambda_{TV}L_{TV} \tag{8}$$
-			- $L_{L1}$ 为 $L1$ 损失，$L_{ssim}$ 为 D-SSIM 损失；（光栅化的图与 GT 图之间的）
-			- $L_{mask}=\Vert I_\alpha-I_m\Vert_1$ 约束高斯位于前景，$I_m$ 为 GT mask 图
-			- $L_{TV}$ ：应用于图像 $I_{k_{d}},I_{k_{s}}$ 的总变化损失，促进光滑的纹理估计
-			- 本文取 $\lambda_{nd}=0.5,\lambda_{L1}=0.8,\lambda_{ssim}=0.2,\lambda_{mask}=0.5,\lambda_{TV}=0.001$ 
+			- $`L _{L1}`$ 为 $`L1`$ 损失，$`L _{ssim}`$ 为 D-SSIM 损失；（光栅化的图与 GT 图之间的）
+			- $`L _{mask}=\Vert I _\alpha-I _m\Vert _1`$ 约束高斯位于前景，$`I _m`$ 为 GT mask 图
+			- $`L _{TV`}$ ：应用于图像 $`I _{k _{d}},I _{k_{s}}`$ 的总变化损失，促进光滑的纹理估计
+			- 本文取 $`\lambda _{nd}=0.5,\lambda _{L1}=0.8,\lambda _{ssim}=0.2,\lambda _{mask}=0.5,\lambda _{TV}=0.001`$ 
 
 ## 编辑解耦的高斯
 
@@ -142,14 +179,20 @@ c_{spec} & \approx Int_{light}\cdot Int_{BRDF} \\
 		- 高斯深度与用公式 [[DeferredGS#^b45b75|(1)]] 渲染的深度图中相应深度之间的差异
 	- 优化高斯的纹理属性 $*$ ：
 		- ×：只考虑输入编辑视点，从其他视角查看优化后的高斯时，可能产生混合伪影
-			- $$\arg\min_{*}\Vert I^i_{*}-I^i_{e}\Vert,*\in\{k_{d},r,k_{s}\} \tag{9}$$
-				- $I^i_*$ ：从输入编辑视点 $i$ 渲染的纹理贴图，e.g. 漫反射反照率贴图
-				- $I^i_e$ ：通过将编辑的内容放到 $I^i_*$ 上，从视点 $i$ 获取编辑后的纹理贴图
-		- √：用随机视角输入来增强优化效果，即从多个随机视点生成编辑后的渲染结果
-			- 将编辑后的内容 (unproject) 到 Instant-RefNeuS 提取的网格上，形成纹理网格
-			- 从随机视角渲染纹理网格
-			- 编辑损失：$$\arg\min_{*}\sum_{j\in L}\Vert I^j_{*}-I^j_{e}\Vert,*\in\{k_{d},r,k_{s}\} \tag{10}$$
-				- 集合 $L$ 包含输入视点和随机采样的视点
+```math
+\arg\min_{*}\Vert I^i_{*}-I^i_{e}\Vert,*\in\{k_{d},r,k_{s}\} \tag{9}$$
+```
+>- $`I^i_*`$ ：从输入编辑视点 $i$ 渲染的纹理贴图，e.g. 漫反射反照率贴图
+>-  $I^i_e$ ：通过将编辑的内容放到 $I^i_*$ 上，从视点 $i$ 获取编辑后的纹理贴图
+
+- - - √：用随机视角输入来增强优化效果，即从多个随机视点生成编辑后的渲染结果
+      - 将编辑后的内容 (unproject) 到 Instant-RefNeuS 提取的网格上，形成纹理网格
+      - 从随机视角渲染纹理网格
+      - 编辑损失：
+```math
+\arg\min_{*}\sum_{j\in L}\Vert I^j_{*}-I^j_{e}\Vert,*\in\{k_{d},r,k_{s}\} \tag{10}
+```
+>- 集合 $`L`$ 包含输入视点和随机采样的视点
 
 # 结果
 
@@ -164,7 +207,7 @@ c_{spec} & \approx Int_{light}\cdot Int_{BRDF} \\
 
 - 3090 GPU with 24GB memory
 - 3-4 小时
-- 单个3090，$800\times800$ 分辨率，以~30FPS的速度合成新视图
+- 单个3090，$`800\times800`$ 分辨率，以~30FPS的速度合成新视图
 
 ## 新视角合成
 
