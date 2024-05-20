@@ -94,16 +94,13 @@ https://arxiv.org/abs/2404.09412
     - $$c_{dif}=\frac{k _{d}}{\pi}\int _{\Omega}L _{i}(\omega _{i})(\omega _{i}\cdot n)\mathrm{d}\omega _{i} \tag{6}$$
       - $`L _{i}(\omega _{i})(\omega _{i}\cdot n)`$ 只依赖于法向 $`n`$ ，并且可以被预计算并存储在 2D 纹理
   - 镜面反射颜色：
-
-$$\begin{align}  c _{spec}  \approx  {}& Int _{light}\cdot Int _{BRDF} \\  
-= {}& \int _{\Omega} L _{i}(\omega _{i})D(\omega _{i},\omega _{o})(\omega _{i}\cdot n)\mathrm{d}\omega _{i}\cdot \int _{\Omega}f(\omega _{i},\omega _{o})(\omega _{i}\cdot n)\mathrm{d}\omega _{i} \tag{7}\end{align}$$
-
-- - - $`Int _{light}`$ 表示入射光与正态分布函数 $D$ 的积分
-    - 对于给定的环境贴图， $`Int _{light}`$ 只与粗糙值 $`r`$ 有关
-    - 故可以预计算并存在 mipmap 中（每一个 mip level 对应一个固定的粗糙值）
-    - $`Int _{BRDF}`$ 是均匀白色环境光照下镜面 BRDF 的积分
-    - 由 BRDF 中的粗糙值和入射光方向与法向之间的点积 $`\omega _i\cdot n`$ 决定
-    - 也可预计算并存在 2D 纹理中，在渲染时进行有效查询
+    - $$c _{spec}  \approx Int _{light}\cdot Int _{BRDF} = \int _{\Omega} L _{i}(\omega _{i})D(\omega _{i},\omega _{o})(\omega _{i}\cdot n)\mathrm{d}\omega _{i}\cdot \int _{\Omega}f(\omega _{i},\omega _{o})(\omega _{i}\cdot n)\mathrm{d}\omega _{i} \tag{7}$$
+      - $`Int _{light}`$ 表示入射光与正态分布函数 $D$ 的积分
+      - 对于给定的环境贴图， $`Int _{light}`$ 只与粗糙值 $`r`$ 有关
+      - 故可以预计算并存在 mipmap 中（每一个 mip level 对应一个固定的粗糙值）
+      - $`Int _{BRDF}`$ 是均匀白色环境光照下镜面 BRDF 的积分
+      - 由 BRDF 中的粗糙值和入射光方向与法向之间的点积 $`\omega _i\cdot n`$ 决定
+      - 也可预计算并存在 2D 纹理中，在渲染时进行有效查询
 
 ### 获得解耦的 GS 表示
 
