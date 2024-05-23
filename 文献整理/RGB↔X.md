@@ -6,7 +6,7 @@ https://doi.org/10.1145/3641519.3657445
 
 # RGB↔X: Image decomposition and synthesis using material- and lighting-aware diffusion models
 
-Zheng Zeng, Valentin Deschaintre, Iliyan Georgiev, Yannick Hold-Geoffroy, Yiwei Hu, Fujun Luan, Ling-Qi Yan, and Miloš Hašan.
+[Zheng Zeng](https://arxiv.org/search/cs?searchtype=author&query=Zeng,+Z), [Valentin Deschaintre](https://arxiv.org/search/cs?searchtype=author&query=Deschaintre,+V), [Iliyan Georgiev](https://arxiv.org/search/cs?searchtype=author&query=Georgiev,+I), [Yannick Hold-Geoffroy](https://arxiv.org/search/cs?searchtype=author&query=Hold-Geoffroy,+Y), [Yiwei Hu](https://arxiv.org/search/cs?searchtype=author&query=Hu,+Y), [Fujun Luan](https://arxiv.org/search/cs?searchtype=author&query=Luan,+F), [Ling-Qi Yan](https://arxiv.org/search/cs?searchtype=author&query=Yan,+L), [Miloš Hašan](https://arxiv.org/search/cs?searchtype=author&query=Ha%C5%A1an,+M)
 
 **Adobe** Research || University of California, **Santa Barbara** USA
 
