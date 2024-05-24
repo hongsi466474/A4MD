@@ -98,9 +98,9 @@ L_{\theta}=\Vert\mathbf{v}^{RGB\to X}_{t}-\hat{\mathbf{v}}^{RGB\to X}_{\theta}(t
 \end{gather}$$
 ```
 
-- $\hat{\mathbf{v}}^{RGB\to X}_{\theta}$ 是带参数 $\theta$ 的RGB→X扩散模型
+- $\hat{\mathbf{v}}^{RGB\to X} _{\theta}$ 是带参数 $\theta$ 的RGB→X扩散模型
 - $t$ 为时间步（在训练过程中均匀提取的噪声量）
-- $\epsilon\in\mathcal{N}(0,1)$ ，$'\bar{\alpha} _t'$ 是 $t$ 的标量函数
+- $\epsilon\in\mathcal{N}(0,1)$ ，$`\bar{\alpha} _t`$ 是 $t$ 的标量函数
 - $\mathbf{z}^X _0$ 为目标 latent ，$`\mathbf{z}^X _t`$ 为在第 $t$ 步对 $\mathbf{z}^X _0$ 噪声 $\epsilon$ 的噪声 latent
 - $\mathcal{E}$ 为原始 stable diffusion 模型的编码器
 - $\mathbf{p}^X$ 是为 $\mathbf{I}$ 计算的文本提示（prompt）
