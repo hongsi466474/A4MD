@@ -124,8 +124,9 @@ L'_{\theta}=\Big\Vert\mathbf{v}^{X\to RGB}_{t}-\hat{\mathbf{v}}^{X\to RGB}_{\the
 \end{gather}
 ```
 
+- $\mathbf{z}^{RGB} _0=\mathcal{E}(\mathbf{I})$ 为目标 latent
 - $\hat{\mathbf{v}}^{X\to RGB} _{\theta}$ 是带参数 $\theta$ 的X→RGB扩散模型
-- $\mathbf{z}^{RGB} _0=\mathcal{E}(\mathbf{I})$ 为目标 latent，
+- $\mathbf{z}^{RGB} _t$ 为噪声 latent
 - $\mathbf{z}^X _t=(\mathcal{P}(\mathbf{n}),\mathcal{P}(\mathbf{a}),\mathcal{P}(\mathbf{r}),\mathcal{P}(\mathbf{m}),\mathcal{P}(\mathbf{E}))$，其中 $\mathcal{P}(x)\in\{\mathcal{E}(x),0\}$ 【通道drop-out】
 - CLIP 文本嵌入 $\tau(\mathbf{p})$ 用作模型交叉注意力层的上下文
 
