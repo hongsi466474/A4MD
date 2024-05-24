@@ -116,6 +116,8 @@ CCS Concepts：计算方法 $\to$ 渲染
  
 ![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/X-%3ERGB.jpeg?raw=true)
 
+> 光照图 $\mathrm{E}$ 通过下采样变为与 latent 同样的分辨率，这样就提供模型一个无像素细节的粗糙的光照提示，但同时又符合整体光照条件。这在编辑法向的时候很重要（图7）
+
 #### 损失函数：
 ```math
 \begin{gather}
@@ -159,7 +161,6 @@ L'_{\theta}=\Big\Vert\mathbf{v}^{X\to RGB}_{t}-\hat{\mathbf{v}}^{X\to RGB}_{\the
 ### 材质替换
 
 ![图7](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0308.jpeg?raw=true)
-^d6338d
 
 ### 插入物体
 
