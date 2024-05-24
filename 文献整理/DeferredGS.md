@@ -82,7 +82,7 @@ https://arxiv.org/abs/2404.09412
   - $$L(\omega_{o})=\int_{\Omega}L_{i}(\omega_{i})f(\omega_{i},\omega_{o})(\omega_{i}\cdot n)\mathrm{d}\omega_{i} \tag{4}$$
     - $`L(\omega _o)`$ 与 $`L(\omega _i)`$ 分别表示 $`\omega _o`$ 方向的出射光线和 $`\omega _i`$ 方向的入射光线
     - $`f(\omega _{i},\omega _{o})`$ 是点的 BRDF 特性，可用迪斯尼着色模型确定：
-      - $$f(\omega_i),\omega_o)=\frac{k_{d}}{\pi}+\frac{DFG}{4(\omega_{i}\cdot n)(\omega_{o}\cdot n)} \tag{5}$$
+      - $$f(\omega_i,\omega_o)=\frac{k_{d}}{\pi}+\frac{DFG}{4(\omega_{i}\cdot n)(\omega_{o}\cdot n)} \tag{5}$$
         - $D$ ：正态分布函数
         - $F$ ：菲涅尔项
         - $G$ ：几何项
