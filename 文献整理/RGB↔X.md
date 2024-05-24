@@ -132,12 +132,35 @@ L'_{\theta}=\Big\Vert\mathbf{v}^{X\to RGB}_{t}-\hat{\mathbf{v}}^{X\to RGB}_{\the
 
 # 结果
 
-## RGB→X
+## RGB→X ：基于合成&真实输入
 
 ![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0085.jpeg?raw=true)
 
 ![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0282.jpeg?raw=true)
 
+![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0283.jpeg?raw=ture)
+
+### 定量比较
+
+![表2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0303.jpeg?raw=true)
+
 ## X→RGB
 
-![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0283.jpeg?raw=ture)
+### 与路径追踪参考的比较
+
+![图5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0305.jpeg?raw=true)
+
+### 输入通道子集和文本提示
+
+![图6](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0306.jpeg?raw=true)
+
+## 应用
+
+### 材质替换
+
+![图7](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0308.jpeg?raw=true)
+^d6338d
+
+### 插入物体
+
+![图一](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0277.jpeg?raw=true)
