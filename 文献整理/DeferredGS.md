@@ -72,7 +72,7 @@ https://arxiv.org/abs/2404.09412
 
 - 对每个高斯定义一个额外的法向 $`n`$ ，并用公式 (1) 求像素 $`C _n`$ 的 GS 法向
 - 通过最小化 $`C _n`$ 与 Instant-RefNeuS 中相应渲染的法线之间的差值来蒸馏 GS 的法向场：
-	- $$L _{nd}=\sum _{v\in V}\Vert 1-C _{n(v)}\cdot C' _{n}(v)\Vert=\sum _{v\in V}\big\Vert 1-C _{n}(v)\cdot C _{\nabla _{x _{v,i}}}\big\Vert \tag{3}$$
+	- $$L _{nd}=\sum _{v\in V}\Vert 1-C _{n}(v)\cdot C' _{n}(v)\Vert=\sum _{v\in V}\big\Vert 1-C _{n}(v)\cdot C _{\nabla _{x _{v,i}}}\big\Vert \tag{3}$$
 
 ## GS 中的延迟着色
 
