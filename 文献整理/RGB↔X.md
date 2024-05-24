@@ -91,7 +91,7 @@ CCS Concepts：计算方法 $\to$ 渲染
 ![](https://github.com/hongsi466474/A4MD/blob/15dd5360cadbc8cbe47a4db2b963235cab57ad4b/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/RGB%E2%80%94%3EX.jpeg?raw=true)
 
 #### 损失函数：
-- 采用 v-prediction 比 $\epsilon$-prediction结果更好
+- 采用 v-prediction 比 $\epsilon$-prediction 结果更好
 - $$\mathbf{v}^{RGB\to X }_{t}=\sqrt{ \bar{\alpha} _{t} }\epsilon-\sqrt{ 1-\bar{\alpha} _{t} }\mathbf{z}^X _{0}  \tag{1}$$
 - $$L _{\theta}=\Vert\mathbf{v}^{RGB\to X} _{t}-\hat{\mathbf{v}}^{RGB\to X} _{\theta}(t,\mathbf{z}^X _{t},\mathcal{E}(\mathbf{I}),\tau(\mathbf{p}^X))\Vert^2 _{2}. \tag{2}$$
 	- $t$ 为时间步（在训练过程中均匀提取的噪声量）
