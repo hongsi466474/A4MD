@@ -91,20 +91,16 @@ CCS Concepts：计算方法 $\to$ 渲染
 ![](https://github.com/hongsi466474/A4MD/blob/15dd5360cadbc8cbe47a4db2b963235cab57ad4b/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/RGB%E2%80%94%3EX.jpeg?raw=true)
 
 #### 损失函数：
-```math
-\begin{gather}
-\mathbf{v}^{RGB\to X}_{t}=\sqrt{ \bar{\alpha}_{t} }\epsilon-\sqrt{ 1-\bar{\alpha}_{t} }\mathbf{z}^X_{0}  \tag{1} \\
-L_{\theta}=\Vert\mathbf{v}^{RGB\to X}_{t}-\hat{\mathbf{v}}^{RGB\to X}_{\theta}(t,\mathbf{z}^X_{t},\mathcal{E}(\mathbf{I}),\tau(\mathbf{p}^X))\Vert^2_{2}. \tag{2}
-\end{gather}$$
-```
-
-- $t$ 为时间步（在训练过程中均匀提取的噪声量）
-- $\epsilon\in\mathcal{N}(0,1)$ ，$`\bar{\alpha} _t`$ 是 $t$ 的标量函数
-- $\mathbf{z}^X _0$ 为目标 latent ，$`\mathbf{z}^X _t`$ 为在第 $t$ 步对 $\mathbf{z}^X _0$ 加噪声 $\epsilon$ 的噪声 latent
-- $\hat{\mathbf{v}}^{RGB\to X} _{\theta}$ 是带参数 $\theta$ 的RGB→X扩散模型
-- $\mathcal{E}$ 为原始 stable diffusion 模型的编码器
-- $\mathbf{p}^X$ 是为 $\mathbf{I}$ 计算的文本提示（prompt）
-- $\tau$ 为 CLIP 文本编码器：将prompt编码为文本嵌入向量（textembedding vector）
+- 采用 v-prediction 比 $\epsilon$-prediction结果更好
+- $$\mathbf{v}^{RGB\to X }_{t}=\sqrt{ \bar{\alpha} _{t} }\epsilon-\sqrt{ 1-\bar{\alpha} _{t} }\mathbf{z}^X _{0}  \tag{1}$$
+- $$L _{\theta}=\Vert\mathbf{v}^{RGB\to X} _{t}-\hat{\mathbf{v}}^{RGB\to X} _{\theta}(t,\mathbf{z}^X _{t},\mathcal{E}(\mathbf{I}),\tau(\mathbf{p}^X))\Vert^2 _{2}. \tag{2}$$
+	- $t$ 为时间步（在训练过程中均匀提取的噪声量）
+	- $\epsilon\in\mathcal{N}(0,1)$ ，$`\bar{\alpha} _t`$ 是 $t$ 的标量函数
+	- $\mathbf{z}^X _0$ 为目标 latent ，$`\mathbf{z}^X _t`$ 为在第 $t$ 步对 $\mathbf{z}^X _0$ 加噪声 $\epsilon$ 的噪声 latent
+	- $\hat{\mathbf{v}}^{RGB\to X} _{\theta}$ 是带参数 $\theta$ 的RGB→X扩散模型
+	- $\mathcal{E}$ 为原始 stable diffusion 模型的编码器
+	- $\mathbf{p}^X$ 是为 $\mathbf{I}$ 计算的文本提示（prompt）
+	- $\tau$ 为 CLIP 文本编码器：将prompt编码为文本嵌入向量（textembedding vector）
 
 ### X→RGB 模型
 
@@ -128,9 +124,9 @@ L'_{\theta}=\Big\Vert\mathbf{v}^{X\to RGB}_{t}-\hat{\mathbf{v}}^{X\to RGB}_{\the
 \end{gather}
 ```
 
-- $\hat{\mathbf{v}}^{X\to RGB}_{\theta}$ 是带参数 $\theta$ 的X→RGB扩散模型
-- $\mathbf{z}^{RGB}_0=\mathcal{E}(\mathbf{I})$ 为目标 latent，
-- $\mathbf{z}^X_t=(\mathcal{P}(\mathbf{n}),\mathcal{P}(\mathbf{a}),\mathcal{P}(\mathbf{r}),\mathcal{P}(\mathbf{m}),\mathcal{P}(\mathbf{E}))，其中\mathcal{P}(x)\in\{\mathcal{E}(x),0\}$ 【通道drop-out】
+- $\hat{\mathbf{v}}^{X\to RGB} _{\theta}$ 是带参数 $\theta$ 的X→RGB扩散模型
+- $\mathbf{z}^{RGB} _0=\mathcal{E}(\mathbf{I})$ 为目标 latent，
+- $\mathbf{z}^X _t=(\mathcal{P}(\mathbf{n}),\mathcal{P}(\mathbf{a}),\mathcal{P}(\mathbf{r}),\mathcal{P}(\mathbf{m}),\mathcal{P}(\mathbf{E}))$，其中 $\mathcal{P}(x)\in\{\mathcal{E}(x),0\}$ 【通道drop-out】
 - CLIP 文本嵌入 $\tau(\mathbf{p})$ 用作模型交叉注意力层的上下文
 
 # 结果
