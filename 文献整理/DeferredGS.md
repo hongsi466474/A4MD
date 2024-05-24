@@ -63,7 +63,7 @@ https://arxiv.org/abs/2404.09412
 - 用公式 (1) 对光线 $`v`$ 上的采样点的颜色作积分以渲染像素 $`C' _c(v)`$ 
 - 点 $`x _i`$ 的不透明度 $`\alpha _i=1-\exp\big(-\int^{t _{i+1}} _{t _{i}}\sigma(t)\mathrm{d}t\big)`$ 
 - 损失函数：
-	- $$L _{nerf}=\sum _{c\in V}\big\Vert C' _{c}(v)-C^t(v)\big\Vert+\lambda\sum _{v\in V}\sum^M _{i=1}\big\Vert\Vert\nabla _{x _{v,i}}\Vert-1\big\Vert^2 _{2} \tag{2}$$
+	- $$L _{nerf}=\sum _{v\in V}\big\Vert C' _{c}(v)-C^t(v)\big\Vert+\lambda\sum _{v\in V}\sum^M _{i=1}\big\Vert\Vert\nabla _{x _{v,i}}\Vert-1\big\Vert^2 _{2} \tag{2}$$
  		- $`V`$ 为一个batch的光线数，$`M`$ 为一条光线上的采样点数，$`C^t(v)`$ 为对应的GT颜色
 		- 第二项为 Eikonal 损失，$`\Vert\nabla _{x _{v,i}}\Vert`$ 为光线 $v$ 在第 $i$ 个采样点 $`x _{v,i}`$ 处的SDF网络 $`f _s(x)`$ 梯度的 spatial norm
 		- 本文取 $`\lambda=0.1`$ 
