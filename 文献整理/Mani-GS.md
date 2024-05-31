@@ -65,7 +65,7 @@ The **Hong Kong** University of **Science and Technology** || **Tencent** AI Lab
 - 将 3DGS 看作点云
 - ！：3DGs 没有用于重建的法向
   - √：给 3DGs 额外分配一个高斯属性，即法向 $\boldsymbol{n}$ ：
-    - $$\\{\mathcal{D},\mathcal{N}\}=\sum_ {i\in N}T_ {i}\alpha_ {i}\\{d_ {i},\boldsymbol{n}_ {i}\} \tag{4}$$
+    - $$\\{\mathcal{D},\mathcal{N}\\}=\sum_ {i\in N}T_ {i}\alpha_ {i}\\{d_ {i},\boldsymbol{n}_ {i}\\} \tag{4}$$
       - $d_ {i}$ ：深度； $\boldsymbol{n}_ {i}$ ：每个高斯点的法向
 	    - 优化法向：让渲染后的法向 $\mathcal{N}$ 与伪法向贴图 $\tilde{\mathcal{N}}$ 保持对齐
 		  - $\tilde{\mathcal{N}}$ ：根据局部平面性假设从渲染深度 $\mathcal{D}$ 计算得出
@@ -115,7 +115,7 @@ The **Hong Kong** University of **Science and Technology** || **Tencent** AI Lab
 ## 对网格绑定 GS
 
 - 目标：关联 3DGS 与网格三角形，编辑网格以操纵 3DGS及其渲染结果
-	- 对于三角网格 $\boldsymbol{T}$ （有 $K$ 个顶点 $\\{\boldsymbol{v}_ {i}\}^K_ {i=1}$ 和 $M$ 个三角形 $\\{\boldsymbol{f}_ {i}\}^M_ {i=1}$），想构建一个与网格三角形绑定的 3DGS 模型并优化每个高斯属性 $\\{\boldsymbol{\mu}_ {i},\boldsymbol{q}_ {i},\boldsymbol{s}_ {i},o_ {i},\boldsymbol{c}_ {i}\}$ 
+	- 对于三角网格 $\boldsymbol{T}$ （有 $K$ 个顶点 $\\{\boldsymbol{v}_ {i}\\}^K_ {i=1}$ 和 $M$ 个三角形 $\\{\boldsymbol{f}_ {i}\\}^M_ {i=1}$），想构建一个与网格三角形绑定的 3DGS 模型并优化每个高斯属性 $\\{\boldsymbol{\mu}_ {i},\boldsymbol{q}_ {i},\boldsymbol{s}_ {i},o_ {i},\boldsymbol{c}_ {i}\\}$ 
 - 对于网格 $\boldsymbol{T}$ 的每个三角形 $\boldsymbol{f}$ ，有三个顶点 $(\boldsymbol{v_ {1},v_ {2},v_ {3}})$ ，在此三角形上初始化 $N$ 个高斯
 	- 初始化的高斯位置均值 $\boldsymbol{\mu}=(w_ {1}\boldsymbol{v_ {1}}+w_ {2}\boldsymbol{v_ {2}+}+w_ {3}\boldsymbol{v_ {3}})$ 
 		- $\boldsymbol{w}=(w_ {1},w_ {2},w_ {3})$ 为三角形上每个高斯的预设重心坐标， $w_ {1}+w_ {2}+w_ {3}=1$
