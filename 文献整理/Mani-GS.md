@@ -1,6 +1,6 @@
 https://arxiv.org/abs/2405.17811
 
-https://gaoxiangjun.github.io/mani_ gs/
+https://gaoxiangjun.github.io/mani_gs/
 
 
 ![Overview](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig2.jpg?raw=true)
