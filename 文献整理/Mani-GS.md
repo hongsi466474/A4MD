@@ -77,10 +77,10 @@ The **Hong Kong** University of **Science and Technology** || **Tencent** AI Lab
       - $\lambda_ 1=1,\lambda_ 2=0.2,\lambda_ 3=0.01,\lambda_ 4=0.1$
       - 法向一致性：
         - $$\mathcal{L}_ {n}=\Vert\mathcal{N-\tilde{N}\Vert_ {2}} \tag{9}$$
-		  - 掩码交叉熵损失：解决背景区域中不必要的高斯问题
-        - $$\mathcal{L}_ {mask}=-B^m\log B-(1-B^m)\log(1-B) \tag{10}$$
-			    - $B^m$ ：物体mask
-			    - 累计透射率 $B=\sum_ {i\in N}T_ {i}\alpha_ {i}$
+          - 掩码交叉熵损失：解决背景区域中不必要的高斯问题
+            - $$\mathcal{L}_ {mask}=-B^m\log B-(1-B^m)\log(1-B) \tag{10}$$
+            - $B^m$ ：物体mask
+            - 累计透射率 $B=\sum_ {i\in N}T_ {i}\alpha_ {i}$
 	- 用自适应密度控制对这一阶段进行 3 万次训练
 		- 在迭代 500 到 1 万的范围内，每 500 次迭代执行一次自适应密度控制
 		- 训练阶段完成后，使用高斯位置与法向作为输入，继续进行筛选泊松表面重构
