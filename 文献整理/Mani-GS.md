@@ -106,7 +106,7 @@ The **Hong Kong** University of **Science and Technology** || **Tencent** AI Lab
 
 - NeuS：提取符号距离函数的零值面作作为表面
 	- ×：可能包含过多三角形表面，可能约 150 万
-- √：用网格清理程序消除 noisy floaters，利用网格细化技术将三角形数量减至约 30 万
+- √：用网格清理程序消除 noisy floaters，利用网格删减技术将三角形数量减至约 30 万
 
 ### 网格质量
 
