@@ -76,7 +76,7 @@ The **Hong Kong** University of **Science and Technology** || **Tencent** AI Lab
     - $$\mathcal{L}_ {stage1}=\lambda_ {1}\mathcal{L}_ {1}+\lambda_ {2}\mathcal{L}_ {SSIM}+\lambda_ {3}\mathcal{L}_ {n}+\lambda_ {4}\mathcal{L}_ {mask} \tag{11}$$
       - $\lambda_ 1=1,\lambda_ 2=0.2,\lambda_ 3=0.01,\lambda_ 4=0.1$
       - 法向一致性：
-        - $$\mathcal{L}_ {n}=\Vert\mathcal{N-\tilde{N}\Vert_ {2}} \tag{9}$$
+        - $$\mathcal{L}_ {n}=\Vert\mathcal{N-\tilde{N}\Vert}_ {2} \tag{9}$$
           - 掩码交叉熵损失：解决背景区域中不必要的高斯问题
             - $$\mathcal{L}_ {mask}=-B^m\log B-(1-B^m)\log(1-B) \tag{10}$$
             - $B^m$ ：物体mask
