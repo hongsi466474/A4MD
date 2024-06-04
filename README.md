@@ -2,6 +2,11 @@
 
 ## 2024-06
 
+[GS-Phong](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E6%96%87%E7%8C%AE%E6%95%B4%E7%90%86/GS-Phong.md)：GS结合经典光照Phong模型实现重新光照
+
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Fig3.png?raw=true)
+
+---
 
 ## 2024-05
 
