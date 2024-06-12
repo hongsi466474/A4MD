@@ -1,6 +1,6 @@
 https://arxiv.org/abs/2404.09412
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/overview.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/overview.jpeg?raw=true)
 
 # DefferedGS: Decoupled and Editable Gaussian Splatting with Diferred Shading
 
@@ -22,13 +22,15 @@ https://arxiv.org/abs/2404.09412
 
 # 贡献
 
+![Fig1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Figure1.jpeg?raw=true)
+
 - 提出 DeferredGS，一个可编辑几何图形、纹理和照明的解耦拼接表示，其几何形状通过一个法向蒸馏模块得到增强
 - 第一个应用延迟着色技术到 GS 的方法，减轻了以往方法的混合伪影
 - 产生的分解和编辑结果比以往方法更好
 
 # 方法
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/overview.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/overview.jpeg?raw=true)
 
 ## GS 和纹理定义
 
@@ -171,27 +173,27 @@ https://arxiv.org/abs/2404.09412
 
 ## 新视角合成
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Figure3.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Figure3.jpeg?raw=true)
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Table1.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Table1.jpeg?raw=true)
 
 ## 解耦
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Figure4.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Figure4.jpeg?raw=true)
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Table2.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Table2.jpeg?raw=true)
 
 ##  编辑
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Figure5.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Figure5.jpeg?raw=true)
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Table3.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Table3.jpeg?raw=true)
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Figure6.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Figure6.jpeg?raw=true)
 
 ## 消融
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/DeferredGS/Figure7-10.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/DeferredGS/%E6%88%AA%E5%9B%BE/Figure7-10.jpeg?raw=true)
 
 # 局限
 
