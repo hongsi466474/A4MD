@@ -28,8 +28,8 @@
 
 ## 2024-04
 
-[3DGM](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E6%96%87%E7%8C%AE%E6%95%B4%E7%90%86/3DGM.md)：用于动画和纹理编辑的3D高斯模型
+[3DGM](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/3DGM/3DGM.md)：用于动画和纹理编辑的3D高斯模型
 
-![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/3DGM/Figure1.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/3DGM/%E6%88%AA%E5%9B%BE/Figure1.jpeg?raw=true)
 
 ---
