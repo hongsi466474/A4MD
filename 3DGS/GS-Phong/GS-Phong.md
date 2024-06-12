@@ -1,6 +1,6 @@
 https://arxiv.org/abs/2405.20791
 
-![Fig3](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Fig3.png?raw=true)
+![Fig3](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Fig3.png?raw=true)
 
 # GS-Phong: Meta-Learned 3D Gaussians for Relightable Novel View Synthesis
 
@@ -23,7 +23,7 @@ MoE Key Lab of Artificial Intelligence, AI Institute, **Shanghai Jiao Tong** Uni
 			- √：可以处理给定新环境地图的重新照明任务
 			- ×：需要大量不同光照条件下的图像，不适合“一次一光”（OLAT）设置，即场景由移动点光源照明，训练数据由单目相机采集，如图 1
 
- ![Fig1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Fig1.png?raw=true)
+ ![Fig1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Fig1.png?raw=true)
 
 # 思想：根据对 $V,L,\hat{G}$ 不同的依赖程度解耦光照成分；将 OLAT 定义为多任务学习问题
 
@@ -96,12 +96,11 @@ MoE Key Lab of Artificial Intelligence, AI Institute, **Shanghai Jiao Tong** Uni
 	- ×：基线模型无法长生合理的渲染结果；基于 NeRF 的模型对阴影和镜面反射隐式建模降低了性能
 	- √：本文提出一种明确的光照信息建模方法，自然而然地实现在未知 OOD 场景下的重建和重新照明
 
-![Fig2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Fig2.png?raw=true)
+![Fig2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Fig2.png?raw=true)
 
 # 方法
 
-![Fig3](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Fig3.png?raw=true)
-
+![Fig3](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Fig3.png?raw=true)
 ## 可学习的 Phong 模型
 
 - 通过可学习的高斯点与来自观测者的光源的光线相互作用来分离光照成分
@@ -141,7 +140,7 @@ MoE Key Lab of Artificial Intelligence, AI Institute, **Shanghai Jiao Tong** Uni
 	- 如图 1 ，本文在多任务学习框架中整合和来自多种光照条件的信息，并用二阶导数更新模型
 	- 关键思路：鼓励学习到的几何在不同光照位置之间进行泛化
 
-![Fig1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Fig1.png?raw=true)
+![Fig1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Fig1.png?raw=true)
 
 - 阴影计算
 	- 基于 BVH 的光线追踪方法
@@ -154,7 +153,7 @@ MoE Key Lab of Artificial Intelligence, AI Institute, **Shanghai Jiao Tong** Uni
 		- “蛋与鸡”问题使模型很难将阴影从场景分离，导致颜色预测不准
 		- 要实现准确的场景属性，就必须掌握阴影计算
 
-![Algm1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Algm1.png?raw=true)
+![Algm1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Algm1.png?raw=true)
 
 - 内循环
 	- 在训练管道中集成元学习方案，以解决 OLAT 中固有的阴影学习问题
@@ -242,14 +241,14 @@ $$\begin{aligned}
 
 ## 结果比较
 
-![Fig4](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Fig4.png?raw=true)
+![Fig4](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Fig4.png?raw=true)
 
-![Table1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Table1.png?raw=true)
+![Table1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Table1.png?raw=true)
 
-![Fig5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/fig5.png?raw=true)
+![Fig5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/fig5.png?raw=true)
 ## 消融实验
 
-![Table2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/GS-Phong/Table2.png?raw=true)
+![Table2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-Phong/%E6%88%AA%E5%9B%BE/Table2.png?raw=true)
 # 局限
 
 - 需要进一步研究以增强在处理极端光照条件或复杂场景几何形状时的稳健性
