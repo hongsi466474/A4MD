@@ -3,7 +3,7 @@ https://arxiv.org/abs/2405.17811
 https://gaoxiangjun.github.io/mani_gs/
 
 
-![Overview](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig2.jpg?raw=true)
+![Overview](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Fig2.jpg?raw=true)
 
 # Mani-GS: Gaussian Splatting Manipulation with Triangle Mesh
 
@@ -34,11 +34,11 @@ The **Hong Kong** University of **Science and Technology** || **Tencent** AI Lab
 - 自适应三角形状感知高斯绑定策略：对网格准确度有高包容性支持多种类 3DGS 操纵
 - 评估本方法并取得最先进的结果，展示各种 3DGS 操纵：大尺度变形、局部操纵、软体模拟，如图1：
 
-![Fig1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig1.jpg?raw=true)
+![Fig1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Fig1.jpg?raw=true)
 
 # 方法
 
-![Overview](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig2.jpg?raw=true)
+![Overview](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Fig2.jpg?raw=true)
 
 ## 前置知识
 
@@ -194,22 +194,22 @@ The **Hong Kong** University of **Science and Technology** || **Tencent** AI Lab
 ### 静态渲染
 
 - 定量结果对比
-![表1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Table1.png?raw=true)
+![表1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Table1.png?raw=true)
 
 - 定性结果对比
-![图3](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig3.png?raw=true)
+![图3](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Fig3.png?raw=true)
 
 ### 操纵渲染
 
-![图4](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig4.png?raw=true)
+![图4](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Fig4.png?raw=true)
 
-![图5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig5.png?raw=true)
+![图5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Fig5%202.png?raw=true)
 
 ### 消融实验
 
-![表2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Table2.jpg?raw=true)
+![表2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Table2.jpg?raw=true)
 
-![图6](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/Mani-GS/Fig6.png?raw=true)
+![图6](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/Mani-GS/%E6%88%AA%E5%9B%BE/Fig6.png?raw=true)
 
 # 局限
 
