@@ -2,7 +2,7 @@ https://arxiv.org/abs/2405.00666
 
 https://doi.org/10.1145/3641519.3657445
 
-![Overview of Model](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0278.jpeg?raw=true)
+![Overview of Model](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0278.jpeg?raw=true)
 
 # RGB↔X: Image decomposition and synthesis using material- and lighting-aware diffusion models
 
@@ -69,11 +69,11 @@ CCS Concepts：计算方法 $\to$ 渲染
 
 ### 数据集
 
-![表一](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0279.jpeg?raw=true)
+![表一](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0279.jpeg?raw=true)
 
 ## 模型
 
-![图二](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0278.jpeg?raw=true)
+![图二](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0278.jpeg?raw=true)
 
 ### RGB→X 模型
 
@@ -88,7 +88,7 @@ CCS Concepts：计算方法 $\to$ 渲染
 	- 避免处理多个输出通道
 		- 事实证明，这让训练更具挑战性
 
-![](https://github.com/hongsi466474/A4MD/blob/15dd5360cadbc8cbe47a4db2b963235cab57ad4b/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/RGB%E2%80%94%3EX.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/RGB%E2%80%94%3EX.jpeg?raw=true)
 
 #### 损失函数：
 - 采用 v-prediction 比 $\epsilon$-prediction 结果更好
@@ -114,7 +114,7 @@ CCS Concepts：计算方法 $\to$ 渲染
 	- 让图像生成胜任任何条件的子集
 		- 例如，不提供反照率或照明将导致模型产生似是而非的图像，使用其先验来补偿缺失的信息
  
-![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/X-%3ERGB.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/X-%3ERGB.jpeg?raw=true)
 
 > 光照图 $\mathrm{E}$ 通过下采样变为与 latent 同样的分辨率，这样就提供模型一个无像素细节的粗糙的光照提示，但同时又符合整体光照条件。这在编辑法向的时候很重要（图7）
 
@@ -136,32 +136,32 @@ L'_{\theta}=\Big\Vert\mathbf{v}^{X\to RGB}_{t}-\hat{\mathbf{v}}^{X\to RGB}_{\the
 
 ## RGB→X ：基于合成&真实输入
 
-![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0085.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0085.jpeg?raw=true)
 
-![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0282.jpeg?raw=true)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0282.jpeg?raw=true)
 
-![](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0283.jpeg?raw=ture)
+![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0283.jpeg?raw=true)
 
 ### 定量比较
 
-![表2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0303.jpeg?raw=true)
+![表2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0303.jpeg?raw=true)
 
 ## X→RGB
 
 ### 与路径追踪参考的比较
 
-![图5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0305.jpeg?raw=true)
+![图5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0305.jpeg?raw=true)
 
 ### 输入通道子集和文本提示
 
-![图6](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0306.jpeg?raw=true)
+![图6](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0306.jpeg?raw=true)
 
 ## 应用
 
 ### 材质替换
 
-![图7](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0308.jpeg?raw=true)
+![图7](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0308.jpeg?raw=true)
 
 ### 插入物体
 
-![图一](https://github.com/hongsi466474/A4MD/blob/6f0668dc2f3bbf5b0970b892b07bab3c79bc2f92/%E5%9B%BE%E7%89%87/RGB%E2%86%94X/IMG_0277.jpeg?raw=true)
+![图一](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/RGB%E2%86%94X/%E6%88%AA%E5%9B%BE/IMG_0277.jpeg?raw=true)
