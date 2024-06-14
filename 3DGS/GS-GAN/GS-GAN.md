@@ -60,7 +60,7 @@ Sungkyunkwan University（韩国首尔私立高校）
 		- $$s^l=s^{l-1}+\hat{s}^l+\Delta s,其中 \hat{s}^l,\Delta s<0 \tag{4}$$
 			- 细层级缩放 $s^l$ 由相对于粗层级缩放 $s^{l-1}$ 的相对缩放差 $\hat{s}^l$ 定义
 			- 限制粗层级缩放 $s^{l-1}$ 始终为负值向量
-			- 常数 $\Delta s$ 能进一步降低细层级的缩放
+			- 常数 $\Delta s$ 能进一步降低细层级的缩放大小
 	- 其他参数：
 		- 在 $l$ 层额外定义了残差高斯参数 $\hat{\alpha}^l,\hat{q}^l,\hat{c}^l$ ，并将其添加到上一层高斯参数中：
 		- $$\alpha^l=\alpha^{l-1}+\hat{\alpha}^l,q^l=q^{l-1}+\hat{q}^l,c^l=c^{l-1}+\hat{c}^l \tag{5}$$
