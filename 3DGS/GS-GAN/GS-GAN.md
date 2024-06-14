@@ -37,7 +37,10 @@ Sungkyunkwan University（韩国首尔私立高校）
 ### 3D 生成对抗网络（3D-GANs）
 
 -  3D 生成器 $g(z,\theta)$ 和 2D 鉴别器 $d(I)$ 之间的对抗学习架构
-	- latent code $z\in\mathbb{R}^{d _z}\sim p _z$ ，相机位置 $\theta\in\mathbb{R}^{d _\theta}\sim p _\theta$ 
+	- latent code $z\in\mathbb{R}^{d _z}\sim p _z$ ，相机位置 $\theta\in\mathbb{R}^{d _\theta}\sim p _\theta$
+	- 生成器 $g(z,\theta)$ 根据给定的相机位姿合成 3D 场景并渲染为 2D 假图像 $I_f\in \mathbb{R}^{H\times W\times 3}$
+	- 鉴别器学着鉴别真实图像 $I_r\in \mathbb{R}^{H\times W\times 3}$ 和假图像 $I_f$
+	- 生成器学着欺骗鉴别器
 
 ### 3DGS
 - $$G(x)=e^{-\frac{1}{2}(x-\mu)^\top\Sigma(x-\mu)},\Sigma=RSS^\top R^\top \tag{1}$$
