@@ -37,7 +37,7 @@ Sungkyunkwan University（韩国首尔私立高校）
 ### 3D 生成对抗网络（3D-GANs）
 
 -  3D 生成器 $g(z,\theta)$ 和 2D 鉴别器 $d(I)$ 之间的对抗学习架构
-	- latent code $z\in\mathbb{R}^{d_z}\sim p_z$ ，相机位置 $\theta\in\mathbb{R}^{d_\theta}\sim p_\theta$ 
+	- latent code $z\in\mathbb{R}^{d _z}\sim p _z$ ，相机位置 $\theta\in\mathbb{R}^{d _\theta}\sim p _\theta$ 
 
 ### 3DGS
 - $$G(x)=e^{-\frac{1}{2}(x-\mu)^\top\Sigma(x-\mu)},\Sigma=RSS^\top R^\top \tag{1}$$
@@ -47,7 +47,7 @@ Sungkyunkwan University（韩国首尔私立高校）
 
  ![Fig2](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/3DGS/GS-GAN/%E6%88%AA%E5%9B%BE/Fig2.png?raw=true)
  
-- 从粗到细的层次结构级别 $l\in\{1,\dots,L\}$ ，其中每个级别包含一组高斯参数，不同层级的高斯负责不同级别的细节
+- 从粗到细的层次结构级别 $l\in\\{1,\dots,L\\}$ ，其中每个级别包含一组高斯参数，不同层级的高斯负责不同级别的细节
 - 相近层级的高斯参数间建立依赖关系： $G^l$ 起源于 $G^{l-1}$ 
 	- 位置参数：
 		-  局部约束，将更精细级高斯 $G^l$ 的位置 $\mu^l$ 与其对应的 $G^{l-1}$ 绑在一起
@@ -64,7 +64,7 @@ Sungkyunkwan University（韩国首尔私立高校）
 	- 其他参数：
 		- 在 $l$ 层额外定义了残差高斯参数 $\hat{\alpha}^l,\hat{q}^l,\hat{c}^l$ ，并将其添加到上一层高斯参数中：
 		- $$\alpha^l=\alpha^{l-1}+\hat{\alpha}^l,q^l=q^{l-1}+\hat{q}^l,c^l=c^{l-1}+\hat{c}^l \tag{5}$$
-		- 称 $G^{l-1}$ 与残差参数 $\{\hat{\mu}^l,\hat{s}^l,\hat{\alpha}^l,\hat{q}^l,\hat{c}^l\}\in\hat{G}^l$ 之间的层级关系为 $\texttt{densify}(G^{l-1},\hat{G}^l)$ ，即公式(3)(4)(5)提及的分层相邻的高斯中参数的组合过程
+		- 称 $G^{l-1}$ 与残差参数 $\\{\hat{\mu}^l,\hat{s}^l,\hat{\alpha}^l,\hat{q}^l,\hat{c}^l\\}\in\hat{G}^l$ 之间的层级关系为 $\texttt{densify}(G^{l-1},\hat{G}^l)$ ，即公式(3)(4)(5)提及的分层相邻的高斯中参数的组合过程
 			- 使生成器能以从粗到细的方式对 3D 空间建模，其中细层级高斯描绘了粗层级高斯的细节部分
 			- 通过大幅减少高斯可能的位置来稳定 GAN 的训练，鼓励生成器使用各种尺度的高斯，提高生成不同层级细节的能力
 
@@ -73,18 +73,18 @@ Sungkyunkwan University（韩国首尔私立高校）
 ![Fig3](https://github.com/hongsi466474/A4MD/blob/e51399c3cc2eb9ce4e2295bca33bc6e06806ba70/3DGS/GS-GAN/%E6%88%AA%E5%9B%BE/Fig3.png?raw=true)
 
 - 基于 Transformer 的架构
-- 生成器 $g(z,\theta)$ 表示一系列生成器块，$\texttt{block}_{l}$ 表示层级 $l$ 的生成器块
-- $\texttt{block}_{0}$ ：输入 $N$ 个可学习位置 $\texttt{const}\in\mathbb{R}^{N\times3}$ ，和 latent code $z$ ，输出高纬特征 $x^0$ 
+- 生成器 $g(z,\theta)$ 表示一系列生成器块， $\texttt{block} _{l}$ 表示层级 $l$ 的生成器块
+- $\texttt{block} _{0}$ ：输入 $N$ 个可学习位置 $\texttt{const}\in\mathbb{R}^{N\times3}$ ，和 latent code $z$ ，输出高纬特征 $x^0$ 
 	- $N$ 为初始高斯数
-	- 通过输出层 $\texttt{toGaus}_0$ 处理高斯的第 $i$ 个特征 $x^0_i$ ，得到高斯参数 $\{\mu^0_i,s^0_i,q^0_i,\alpha^0_i,c^0_i\}\subset G^0_i$ 
-- $\texttt{block}_{l}$ ：输入前一块的特征 $x^{l-1}_i$ 和 latent code $z$ ，输出特征 $x^l_j$ 
-	- 输出块 $\texttt{toGaus}_l$ 不直接合成高斯参数 $G^l_j$ 
-	- 中间输出 $\hat{G}^l_j\supset\{\hat{\mu}^l_{j},\hat{s}^l_{j},\hat{q}^0_{j},\hat{\alpha}^0_{j},\hat{c}^0_{j}\}$ 与上一层级相应的高斯 $G^{l-1}_i$ 结合，最终合成第 $l$ 级的高斯 $G^l_j$ 
-- 这一过程建立了相邻层级 $G^{l-1}_i$ 和 $G^l_j$ 的高斯之间的层级依赖关系：
-	- $$x^l_{j}=\texttt{block}_{l}(x^{l-1}_{i},z),\hat{G}^l_{j}=\texttt{toGaus}_{l}(x^l_{j}),G^l_{j}=\texttt{densify}(G^{l-1}_{i},\hat{G}^l_{j}) \tag{6}$$
+	- 通过输出层 $\texttt{toGaus} _0$ 处理高斯的第 $i$ 个特征 $x^0 _i$ ，得到高斯参数 $\\{\mu^0 _i,s^0 _i,q^0 _i,\alpha^0 _i,c^0 _i\\}\subset G^0 _i$ 
+- $\texttt{block} _{l}$ ：输入前一块的特征 $x^{l-1} _i$ 和 latent code $z$ ，输出特征 $x^l _j$ 
+	- 输出块 $\texttt{toGaus} _l$ 不直接合成高斯参数 $G^l _j$ 
+	- 中间输出 $\hat{G}^l _j\supset\\{\hat{\mu}^l _{j},\hat{s}^l _{j},\hat{q}^0 _{j},\hat{\alpha}^0 _{j},\hat{c}^0 _{j}\\}$ 与上一层级相应的高斯 $G^{l-1} _i$ 结合，最终合成第 $l$ 级的高斯 $G^l _j$ 
+- 这一过程建立了相邻层级 $G^{l-1} _i$ 和 $G^l _j$ 的高斯之间的层级依赖关系：
+	- $$x^l _{j}=\texttt{block} _{l}(x^{l-1} _{i},z),\hat{G}^l _{j}=\texttt{toGaus} _{l}(x^l _{j}),G^l _{j}=\texttt{densify}(G^{l-1} _{i},\hat{G}^l _{j}) \tag{6}$$
 - 细层级的尺寸更小，故数量应该随层级增大而增多，以合成更好的细节
-	- 扩大高斯参数 $G^l_j$ 的数量，使每个参数共有 $r^lN$ 个向量
-		- 即，让 $G^l_j$ 依赖 $G^{l-1}_i$ ，其中 $j=ri+k,k\in\{0,1,\dots,r-1\}$ ，$r$ 为上采样率
+	- 扩大高斯参数 $G^l _j$ 的数量，使每个参数共有 $r^lN$ 个向量
+		- 即，让 $G^l _j$ 依赖 $G^{l-1} _i$ ，其中 $j=ri+k,k\in\\{0,1,\dots,r-1\\}$ ，$r$ 为上采样率
 - 合成每一层级的高斯参数后，将它们全部用于生成图像
 	- 渲染高斯个数： $N+rN+\dots+r^{L-1}N$ 
 	- 同 3DGS 使用基于瓦片的光栅化
@@ -95,13 +95,13 @@ Sungkyunkwan University（韩国首尔私立高校）
 	- 必须对高斯训练，以精确地引导细层级高斯的 5 个参数，同时描绘真实世界中的清晰细节
 	- ×：高斯的缩放在特定轴线上可能几乎为零，导致对细层级高斯的位置进行过强的正则化
 	- √：引入一组辅助高斯，只用于帮助正则化，不参与渲染
-- $$[\hat{G}^l_{j},\hat{A}^l_{j}]=\texttt{toGaus}_{l}(x^l_{j}),G^l_{j}=\texttt{densify}(A^{l-1}_{i},\hat{G}^l_{j}),A^l_{j}=\texttt{densify}(A^{l-1}_{i},\hat{A}^l_{j}) \tag{7}$$
-	-  $\hat{G}^l_{j},\hat{A}^l_{j}$ 为给定特征 $x^l_j$ 下 $\texttt{toGaus}_{l}$ 合成的两组高斯
+- $$[\hat{G}^l _{j},\hat{A}^l _{j}]=\texttt{toGaus} _{l}(x^l _{j}),G^l _{j}=\texttt{densify}(A^{l-1} _{i},\hat{G}^l _{j}),A^l _{j}=\texttt{densify}(A^{l-1} _{i},\hat{A}^l _{j}) \tag{7}$$
+	-  $\hat{G}^l _{j},\hat{A}^l _{j}$ 为给定特征 $x^l _j$ 下 $\texttt{toGaus} _{l}$ 合成的两组高斯
 	- $A^l$ 为层级 $l$ 的锚点高斯，其参数化与 $G^l$ 相同
 		- 只用于正则化，作为 $\texttt{densfy}$ 的输入，尤其是粗层级的高斯输入
-		- 锚点高斯 $A^{l-1}_i$ 只学习指导其对应细层级高斯 $G^l_j$ 的参数
+		- 锚点高斯 $A^{l-1} _i$ 只学习指导其对应细层级高斯 $G^l _j$ 的参数
 		- 可缓解零方差导致的强正则化效果
-	- $l=0$ 时，令 $A^0_{i}=\hat{A}^0_{i},G^0_{i}=\texttt{densify}(A^0_{i},\hat{G}^0_{i})$ 
+	- $l=0$ 时，令 $A^0 _{i}=\hat{A}^0 _{i},G^0 _{i}=\texttt{densify}(A^0 _{i},\hat{G}^0 _{i})$ 
 
 ### 架构细节
 
@@ -119,24 +119,24 @@ Sungkyunkwan University（韩国首尔私立高校）
 ## 训练目标
 
 - 带 $R1$ 正则的非饱和对抗损失：
-	- $$\mathcal{L}_{adv}=\mathbb{E}_{z\sim P_{z},\theta\sim P_{\theta}}[f(d(g(z,\theta)))]+\mathbb{E}_{I_{r}\sim P_{I_{r}}}[f(-d(I_{r}))+\lambda\Vert\nabla d(I_{r})\Vert^2] \tag{8}$$
+	- $$\mathcal{L} _{adv}=\mathbb{E} _{z\sim P _{z},\theta\sim P _{\theta}}[f(d(g(z,\theta)))]+\mathbb{E} _{I _{r}\sim P _{I _{r}}}[f(-d(I _{r}))+\lambda\Vert\nabla d(I _{r})\Vert^2] \tag{8}$$
 		- 软加函数 $f(t)=-\log(1+\exp(-t))$ ，$\lambda$ 为 $R1$ 正则化强度
 - 通过在图中获得的位置嵌入和相机参数之间引入对比学习，为鉴别器和生成器提供 3D 信息：
-	- 鉴别器的位置分支 $d_p$ 能估计输入图像的位置嵌入 $p_I$ 
-	- 引入由 MLP 层组成的位置编码器，将相机参数 $\theta$ 编码到位置嵌入 $p_\theta$ 中
-	- 利用对比目标来增强相应 $p_I$ 和 $p_\theta$ 之间的相似性
-	- $$\mathcal{L}_{pose}=-\log\left( \frac{\exp\left( \frac{\text{sim}(p_{I},p^+_{\theta})}{\tau} \right)}{\sum^B_{b=1}\left( \exp\left( \frac{\text{sim}(p_{I},p^b_{\theta})}{\tau} \right) \right)} \right) \tag{9}$$
+	- 鉴别器的位置分支 $d _p$ 能估计输入图像的位置嵌入 $p _I$ 
+	- 引入由 MLP 层组成的位置编码器，将相机参数 $\theta$ 编码到位置嵌入 $p _\theta$ 中
+	- 利用对比目标来增强相应 $p _I$ 和 $p _\theta$ 之间的相似性
+	- $$\mathcal{L} _{pose}=-\log\left( \frac{\exp\left( \frac{\text{sim}(p _{I},p^+ _{\theta})}{\tau} \right)}{\sum^B _{b=1}\left( \exp\left( \frac{\text{sim}(p _{I},p^b _{\theta})}{\tau} \right) \right)} \right) \tag{9}$$
 		- $\text{sim}(\cdot,\cdot)$ 为余弦相似度，$B$ 为 batch 大小
-		- $p^+_{\theta}$ 为与图像中位置嵌入 $p_I$ 对应的正样本，$\tau$ 为温度比例参数
-		- 用真实数计算鉴别器的 $\mathcal{L}_{pose}$ ，用假数据训练生成器
-- 引入两种损失以规范锚点高斯在最粗层级 $\mu^0_A$ 中的的位置：
-	- 将 $\mu^0_A$ 的平均位置正则化为零，鼓励高斯中心位于时间空间的原点附近
+		- $p^+ _{\theta}$ 为与图像中位置嵌入 $p _I$ 对应的正样本， $\tau$ 为温度比例参数
+		- 用真实数计算鉴别器的 $\mathcal{L} _{pose}$ ，用假数据训练生成器
+- 引入两种损失以规范锚点高斯在最粗层级 $\mu^0 _A$ 中的的位置：
+	- 将 $\mu^0 _A$ 的平均位置正则化为零，鼓励高斯中心位于时间空间的原点附近
 	- 减小 $K$ 个最近的锚点高斯之间的位置距离，防止锚点高斯和其他高斯分离
-	- $$\mathcal{L}_{center}=\frac{1}{N}\Vert\sum^N_{j=1}\mu^0_{A,j}\Vert^2,\mathcal{L}_{knn}=\frac{1}{NK}\sum^N_{j=1}\Vert\sum^K_{k=1}(\mu^0_{A,j}-\text{KNN}(\mu^0_{A,j},k))\Vert^2 \tag{10}$$
-		- $\text{KNN}(\mu^0_{A,j},k)$ 为 $\mu^0_{A}$ 的第 $j$ 个锚点高斯的第 $k$ 个临近位置
+	- $$\mathcal{L} _{center}=\frac{1}{N}\Vert\sum^N _{j=1}\mu^0 _{A,j}\Vert^2,\mathcal{L} _{knn}=\frac{1}{NK}\sum^N _{j=1}\Vert\sum^K _{k=1}(\mu^0 _{A,j}-\text{KNN}(\mu^0 _{A,j},k))\Vert^2 \tag{10}$$
+		- $\text{KNN}(\mu^0 _{A,j},k)$ 为 $\mu^0 _{A}$ 的第 $j$ 个锚点高斯的第 $k$ 个临近位置
 - 总损失：
-- $$\mathcal{L}=\mathcal{L}_{adv}+\lambda_{pose}\mathcal{L}_{pose}+\lambda_{center}\mathcal{L}_{center}+\lambda_{knn}\mathcal{L}_{knn} \tag{11}$$
-	- $\lambda_*$ 为对应目标函数的强度
+- $$\mathcal{L}=\mathcal{L} _{adv}+\lambda _{pose}\mathcal{L} _{pose}+\lambda _{center}\mathcal{L} _{center}+\lambda _{knn}\mathcal{L} _{knn} \tag{11}$$
+	- $\lambda _*$ 为对应目标函数的强度
 
 # 实验
 
