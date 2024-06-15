@@ -123,7 +123,7 @@ Sungkyunkwan University（韩国首尔私立高校）
 
 - 带 $R1$ 正则的非饱和对抗损失：
 	- $$\mathcal{L} _{adv}=\mathbb{E} _{z\sim P _{z},\theta\sim P _{\theta}}[f(d(g(z,\theta)))]+\mathbb{E} _{I _{r}\sim P _{I _{r}}}[f(-d(I _{r}))+\lambda\Vert\nabla d(I _{r})\Vert^2] \tag{8}$$
-		- 软加函数 $f(t)=-\log(1+\exp(-t))$ ，$\lambda$ 为 $R1$ 正则化强度
+		- 软加函数 $f(t)=-\log(1+\exp(-t))$ ， $\lambda$ 为 $R1$ 正则化强度
 - 通过在图中获得的位置嵌入和相机参数之间引入对比学习，为鉴别器和生成器提供 3D 信息：
 	- 鉴别器的位置分支 $d _p$ 能估计输入图像的位置嵌入 $p _I$ 
 	- 引入由 MLP 层组成的位置编码器，将相机参数 $\theta$ 编码到位置嵌入 $p _\theta$ 中
