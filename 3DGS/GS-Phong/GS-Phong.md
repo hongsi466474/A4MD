@@ -145,7 +145,7 @@ MoE Key Lab of Artificial Intelligence, AI Institute, **Shanghai Jiao Tong** Uni
 - 阴影计算
 	- 基于 BVH 的光线追踪方法
 		- 对每个点，通过追踪从高斯平均位置到光源的射线确定光的可见度，然后计算射线的累计透射率，即 $T^{light}_ {i}=\prod^{i-1}_ {j=1}(1-\alpha_ {j})$ 
-		- 只有漫反射和镜面反射颜色收入射光强度影响
+		- 只有漫反射和镜面反射颜色受入射光强度影响
 		- 更新每个点的颜色： 
 			- 在漫反射和镜面反射项中加入光能见度因子
 			- $$L_ {p}=k_ {a}I_ {a}+T^{light}_ {i}\times\sum_ {m\in lights}(k_ {d}I_ {d}+k_ {s}I_ {s}) \tag{6}$$
