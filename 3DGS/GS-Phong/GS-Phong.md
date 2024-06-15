@@ -212,7 +212,7 @@ $$\begin{aligned}
 	  - $k$ ：模糊核大小，设为 $9\times9$ 
 - 漫反射先验损失：
   - $$\mathcal{L}_ {diffuse}=\lambda_ {diffuse} \frac{1}{N}\sum^N_ {i=1}\Vert\mathcal{I}^a_ {i}-\boldsymbol{s}\cdot\mathcal{I}^d_ {i}\Vert^2 \tag{11}$$
-	  - 有效限制漫反射 RGB 变得过于混乱he'xian'ru'ju'de'qing'kuang和陷入局部极小值的情况
+	  - 有效限制漫反射 RGB 变得过于混乱和陷入局部极小值的情况
 	  - $N$ ：点的总数
 	  - $\mathcal{I}^a_ {i},\mathcal{I}^d_ {i}$ ：表示第 $i$ 个点的 RGB 颜色的三通道向量
 	  - 思想：限制漫反射 RGB 接近于环境色的 $\boldsymbol{s}$ 倍
