@@ -129,7 +129,7 @@ Sungkyunkwan University（韩国首尔私立高校）
 	- 引入由 MLP 层组成的位置编码器，将相机参数 $\theta$ 编码到位置嵌入 $p _\theta$ 中
 	- 利用对比目标来增强相应 $p _I$ 和 $p _\theta$ 之间的相似性
 	- $$\mathcal{L} _{pose}=-\log\left( \frac{\exp\left( \frac{\text{sim}(p _{I},p^+ _{\theta})}{\tau} \right)}{\sum^B _{b=1}\left( \exp\left( \frac{\text{sim}(p _{I},p^b _{\theta})}{\tau} \right) \right)} \right) \tag{9}$$
-		- $\text{sim}(\cdot,\cdot)$ 为余弦相似度，$B$ 为 batch 大小
+		- $\text{sim}(\cdot,\cdot)$ 为余弦相似度， $B$ 为 batch 大小
 		- $p^+ _{\theta}$ 为与图像中位置嵌入 $p _I$ 对应的正样本， $\tau$ 为温度比例参数
 		- 用真实数计算鉴别器的 $\mathcal{L} _{pose}$ ，用假数据训练生成器
 - 引入两种损失以规范锚点高斯在最粗层级 $\mu^0 _A$ 中的的位置：
