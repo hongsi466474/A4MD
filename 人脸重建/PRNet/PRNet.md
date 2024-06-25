@@ -11,7 +11,7 @@ http://github.com/yfeng95.PRNet
 
 **Shanghai Jiao Tong** University || CloudWalk Technology （云从科技）|| Research Center for Intelligent Security Technology, CIGIT（**中科院**）
 
-关键词： #3D重建/面部 #人脸对齐 #密集对应
+关键词： #3D重建/面部 #人脸对齐 #密集对应（Dense Correspondence）
 
 自添关键词： 
 
