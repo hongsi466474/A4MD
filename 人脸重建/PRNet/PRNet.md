@@ -121,6 +121,11 @@ http://github.com/yfeng95.PRNet
 
 ## 3D 人脸对齐
 
+- 可见点和不可见点（包括 68 个关键点）的密集对齐
+- 点的可见性（1 表示可见，0 表示不可见）
+
+![](https://github.com/yfeng95/PRNet/raw/master/Docs/images/alignment.jpg)
+
 ![Fig5](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA/PRNet/%E6%88%AA%E5%9B%BE/Fig5.png?raw=true)
 
 ![Table1](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA/PRNet/%E6%88%AA%E5%9B%BE/Table1.png?raw=true)
