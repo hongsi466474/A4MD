@@ -2,6 +2,11 @@
 
 ## 2024-06
 
+[GS-GAN](https://github.com/hongsi466474/A4MD/blob/392b373bfb308f546aa7f5599a38f8931b702354/3DGS/GS-GAN/GS-GAN.md)：用不同大小的高斯球负责图片不同层级的的细节
+![](https://github.com/hongsi466474/A4MD/blob/392b373bfb308f546aa7f5599a38f8931b702354/3DGS/GS-GAN/%E6%88%AA%E5%9B%BE/Fig3.png?raw=true)
+
+---
+
 [PRNet](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA/PRNet/PRNet.md)：一种以端到端方式联合回归密集对齐和 3D 脸型的方法
 ![](https://github.com/hongsi466474/A4MD/blob/%E6%96%87%E7%8C%AE%E7%9B%B8%E5%85%B3/%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA/PRNet/%E6%88%AA%E5%9B%BE/Fig3.png?raw=true)
 
